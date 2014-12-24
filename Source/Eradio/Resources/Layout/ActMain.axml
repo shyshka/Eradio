@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="#FFFF99"
+    android:id="@+id/linearLayout1">
+    <TableLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout1"
+        android:stretchColumns="1"
+        android:background="@android:color/background_light">
+        <TableRow>
+            <ImageView
+                android:id="@+id/iViewArtist"
+                android:scaleType="fitCenter"
+                android:layout_width="130.0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/Logo"
+                android:padding="07.0dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_column="1"
+                android:id="@+id/linearLayout1">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewTrack"
+                    android:textColor="@android:color/black"
+                    android:layout_column="0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30.0dp"
+                    android:text="Track: "
+                    android:padding="05.0dp"
+                    android:textSize="16.0dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewArtist"
+                    android:textColor="@android:color/black"
+                    android:layout_column="0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30.0dp"
+                    android:padding="05.0dp"
+                    android:text="Artist: "
+                    android:textSize="16.0dp"
+                    android:textStyle="bold" />
+                <ImageButton
+                    android:src="@drawable/Play"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80.0dp"
+                    android:id="@+id/btnPlay"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:layout_marginBottom="0.0dp"
+                    android:scaleType="fitStart" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+    <TextView
+        android:text="Плейлист:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:padding="05.0dp"
+        android:textStyle="bold" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lViewHistoryPlay" />
+</LinearLayout>

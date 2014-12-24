@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFF99">
+    <TableLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout1"
+        android:stretchColumns="1">
+        <TableRow
+            android:id="@+id/tableRow1">
+            <ImageView
+                android:src="@drawable/Erock"
+                android:id="@+id/iViewArtist"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:layout_column="0"
+                android:layout_height="45.0dp"
+                android:layout_width="45.0dp"
+                android:padding="05.0dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_column="1"
+                android:id="@+id/linearLayout1">
+                <TextView
+                    android:text="Text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tViewArtist"
+                    android:textColor="@android:color/black" />
+                <TextView
+                    android:text="Text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tViewTrack"
+                    android:textColor="@android:color/black" />
+                <TextView
+                    android:text="Text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tViewTime"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
