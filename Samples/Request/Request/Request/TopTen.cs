@@ -8,18 +8,17 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace Request
 {
-    public class HistoryPlay
+    public class TopTen
     {
         public class HistoryPlayItem
         {
             public string ImagePath;
             public string ArtistName;
             public string TrackName;
-            public string TimeVal;
+            public string SrcFilePath;
             public Bitmap ImageArtist;
         }
 
@@ -28,13 +27,13 @@ namespace Request
         {
             get { return _lstHistory; }
             set { _lstHistory = value; }
-        }   
+        }
 
-        public static HistoryPlay CreateNewObject()
+        public static TopTen CreateNewObject()
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://eradio.ua/play_history.php");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://eradio.ua/top_ten.php");
                 var data = Encoding.ASCII.GetBytes("src=http://eradio.ua/rock/");
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
@@ -51,16 +50,16 @@ namespace Request
                 sr.Close();
 
                 string sPicture = "<img src=\"[^\"]*\"";
-                string sArtist = "track\"[^-]*";
+                string sArtist = "</audio>[^-]*";
                 string sTrack = "- <span>[^<]*";
-                string sTime = "time\">[^<]*";
+                string sSrcFile = "\" src=\"..[^\"]*";
 
                 MatchCollection pictures = Regex.Matches(s, sPicture);
                 MatchCollection artists = Regex.Matches(s, sArtist);
                 MatchCollection tracks = Regex.Matches(s, sTrack);
-                MatchCollection times = Regex.Matches(s, sTime);
+                MatchCollection srcFiles = Regex.Matches(s, sSrcFile);
 
-                HistoryPlay historyPlayObj = new HistoryPlay();
+                TopTen historyPlayObj = new TopTen();
                 historyPlayObj.LstHistory = new List<HistoryPlayItem>();
                 for (int i = 0; i < 10; i++)
                 {
@@ -69,7 +68,7 @@ namespace Request
                         ImagePath = pictures[i].Value.Remove(0, 10).Trim('"'),
                         ArtistName = artists[i].Value.Remove(0, 9).Trim(' '),
                         TrackName = tracks[i].Value.Remove(0, 8),
-                        TimeVal = times[i].Value.Remove(0, 7).Trim(' '),
+                        SrcFilePath = "http://eradio.ua" +srcFiles[i].Value.Remove(0, 9),
                         ImageArtist = WebContent.LoadPicture(pictures[i].Value.Remove(0, 10).Trim('"'))
                     });                    
                 }

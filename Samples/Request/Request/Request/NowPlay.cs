@@ -12,7 +12,7 @@ namespace Request
     {
         public string ARTIST_NAME;
         public string TRACK_SONG;
-        public string PICTURE;
+        public string PICTURE;        
 
         public static NowPlay CreateNewObject()
         {

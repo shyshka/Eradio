@@ -18,6 +18,9 @@ namespace Request
         public delegate void HistoryPlayHandler(object sendeg, HistoryPlay arg);
         public event HistoryPlayHandler HistoryPlayChanged;
 
+        public delegate void TopTenEventHandler(object sender, TopTen arg);
+        public event TopTenEventHandler TopTenChanged;
+
         private NowPlay _nowPlayObj;
         private NowPlay NowPlayObj
         {
@@ -46,6 +49,20 @@ namespace Request
             }
         }
 
+        private TopTen _topTenObj;
+        private TopTen TopTenObj
+        {
+            get { return _topTenObj; }
+            set
+            {
+                if (value == null) return;
+                if (_topTenObj != null)
+                    if (_topTenObj.Equals(value)) return;
+                _topTenObj = value;
+                if (TopTenChanged != null) TopTenChanged(null, _topTenObj);
+            }
+        }
+
         public BackThread()
         {
             this.NowPlayChanged += delegate
@@ -53,6 +70,7 @@ namespace Request
                 threadHistoryPlay = new Thread(new ThreadStart(delegate
                 {
                     HistoryPlayObj = HistoryPlay.CreateNewObject();
+                    TopTenObj = TopTen.CreateNewObject();
                 }));
                 threadHistoryPlay.Start();
             };
