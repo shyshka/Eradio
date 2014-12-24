@@ -23,7 +23,7 @@ namespace Request
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentLength = data.Length;
-                var stream = request.GetRequestStream();
+                Stream stream = request.GetRequestStream();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();

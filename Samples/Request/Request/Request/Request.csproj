@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackThread.cs" />
+    <Compile Include="HistoryPlay.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,37 +8,73 @@ namespace Request
 {
     public class BackThread
     {
-        public  bool IsCanceled = false;
         private const int interval = 10000;
+        private Thread threadNowPlay;
+        private Thread threadHistoryPlay;
 
         public delegate void NowPlayEventHandler(object sender, NowPlay arg);
-        public  event NowPlayEventHandler NowPlayChanged;
+        public event NowPlayEventHandler NowPlayChanged;
 
-        private  NowPlay _nowPlay_obj;
-        private  NowPlay NowPlay_obj
+        public delegate void HistoryPlayHandler(object sendeg, HistoryPlay arg);
+        public event HistoryPlayHandler HistoryPlayChanged;
+
+        private NowPlay _nowPlayObj;
+        private NowPlay NowPlayObj
         {
-            get { return _nowPlay_obj; }
+            get { return _nowPlayObj; }
             set
             {
                 if (value == null) return;
-                if (_nowPlay_obj != null)
-                    if (_nowPlay_obj.Equals(value)) return;
-                _nowPlay_obj = value;
-                if (NowPlayChanged != null) NowPlayChanged(null, _nowPlay_obj);
+                if (_nowPlayObj != null)
+                    if (_nowPlayObj.Equals(value)) return;
+                _nowPlayObj = value;
+                if (NowPlayChanged != null) NowPlayChanged(null, _nowPlayObj);
             }
         }
 
-        public  void StartThread()
+        private HistoryPlay _historyPlayObj;
+        private HistoryPlay HistoryPlayObj
         {
-            Thread thread = new Thread(new ThreadStart(delegate
+            get { return _historyPlayObj; }
+            set
+            {
+                if (value == null) return;
+                if (_historyPlayObj != null)
+                    if (_historyPlayObj.Equals(value)) return;
+                _historyPlayObj = value;
+                if (HistoryPlayChanged != null) HistoryPlayChanged(null, _historyPlayObj);
+            }
+        }
+
+        public BackThread()
+        {
+            this.NowPlayChanged += delegate
+            {
+                threadHistoryPlay = new Thread(new ThreadStart(delegate
                 {
-                    while (!IsCanceled)
+                    HistoryPlayObj = HistoryPlay.CreateNewObject();
+                }));
+                threadHistoryPlay.Start();
+            };
+        }
+
+        public void StartThread()
+        {
+            threadNowPlay = new Thread(new ThreadStart(delegate
+                {
+                    while (true)
                     {
-                        NowPlay_obj = NowPlay.CreateNewObject();
+                        NowPlayObj = NowPlay.CreateNewObject();
                         Thread.Sleep(interval);
                     }
                 }));
-            thread.Start();
+            threadNowPlay.Start();           
+        }
+
+        public void StopThread()
+        {
+           if (threadNowPlay != null) threadNowPlay.Abort();
+           if (threadHistoryPlay != null) threadHistoryPlay.Abort();
         }
     }
 }
