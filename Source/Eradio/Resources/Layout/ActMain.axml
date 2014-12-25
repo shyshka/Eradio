@@ -5,7 +5,6 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:background="#FFFF99"
     android:id="@+id/linearLayout1">
     <TableLayout
         android:minWidth="25px"
@@ -13,15 +12,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tableLayout1"
-        android:stretchColumns="1"
-        android:background="@android:color/background_light">
+        android:stretchColumns="1">
         <TableRow>
             <ImageView
                 android:id="@+id/iViewArtist"
                 android:scaleType="fitCenter"
                 android:layout_width="130.0dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/Logo"
+                android:src="@drawable/Erock"
                 android:padding="07.0dp" />
             <LinearLayout
                 android:orientation="vertical"
@@ -32,7 +30,7 @@
                 <TextView
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/tViewTrack"
-                    android:textColor="@android:color/black"
+                    android:textColor="#FF0000"
                     android:layout_column="0"
                     android:layout_width="fill_parent"
                     android:layout_height="30.0dp"
@@ -43,7 +41,7 @@
                 <TextView
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/tViewArtist"
-                    android:textColor="@android:color/black"
+                    android:textColor="#FF0000"
                     android:layout_column="0"
                     android:layout_width="fill_parent"
                     android:layout_height="30.0dp"
@@ -60,22 +58,26 @@
                     android:adjustViewBounds="true"
                     android:background="@null"
                     android:layout_marginBottom="0.0dp"
-                    android:scaleType="fitStart" />
+                    android:scaleType="fitStart"
+                    android:padding="03.0dp"
+                    android:clickable="true" />
             </LinearLayout>
         </TableRow>
     </TableLayout>
     <TextView
-        android:text="Плейлист:"
+        android:text="Останні 10:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="#FFFFFF"
         android:padding="05.0dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lViewHistoryPlay" />
+        android:id="@+id/lViewHistoryPlay"
+        android:clickable="true" />
 </LinearLayout>

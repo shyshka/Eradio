@@ -68,8 +68,8 @@ namespace Eradio
                         ImagePath = pictures[i].Value.Remove(0, 10).Trim('"'),
                         ArtistName = artists[i].Value.Remove(0, 9).Trim(' '),
                         TrackName = tracks[i].Value.Remove(0, 8),
-                        SrcFilePath = "http://eradio.ua" +srcFiles[i].Value.Remove(0, 9)/*,
-                        /*ImageArtist = WebContent.LoadPicture(pictures[i].Value.Remove(0, 10).Trim('"'))*/
+                        SrcFilePath = "http://eradio.ua" +srcFiles[i].Value.Remove(0, 9),
+                        ImageArtist = WebProvider.GetImageBitmapFromUrl(pictures[i].Value.Remove(0, 10).Trim('"'))
                     });                    
                 }
                 return historyPlayObj;

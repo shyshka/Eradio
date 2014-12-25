@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#FFFF99">
+    android:layout_height="fill_parent">
     <TableLayout
         android:minWidth="25px"
         android:minHeight="25px"
@@ -17,35 +16,38 @@
                 android:src="@drawable/Erock"
                 android:id="@+id/iViewArtist"
                 android:scaleType="fitCenter"
-                android:background="@null"
                 android:layout_column="0"
-                android:layout_height="45.0dp"
-                android:layout_width="45.0dp"
-                android:padding="05.0dp" />
+                android:layout_height="match_parent"
+                android:layout_width="70.0dp"
+                android:padding="03.0dp" />
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:layout_column="1"
-                android:id="@+id/linearLayout1">
+                android:id="@+id/linearLayout1"
+                android:padding="3.0dp">
                 <TextView
                     android:text="Text"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tViewArtist"
-                    android:textColor="@android:color/black" />
+                    android:textColor="#FF0000"
+                    android:textStyle="bold" />
                 <TextView
                     android:text="Text"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tViewTrack"
-                    android:textColor="@android:color/black" />
+                    android:textColor="#FF0000"
+                    android:textStyle="bold" />
                 <TextView
                     android:text="Text"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tViewTime"
-                    android:textColor="@android:color/black" />
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

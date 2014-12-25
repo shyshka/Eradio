@@ -16,13 +16,11 @@ namespace Eradio
     {
         public HistoryPlay HistoryPlayObj;
         private Activity _activity;
-        private LayoutInflater _inflater;
 
         public HistoryPlayAdapter(Activity activity, HistoryPlay historyPlay)
         {
             _activity = activity;
             HistoryPlayObj = historyPlay;
-            _inflater = ( LayoutInflater )_activity.GetSystemService(Context.LayoutInflaterService);
         }
 
         public override int Count
@@ -45,12 +43,12 @@ namespace Eradio
             var textTrack = view.FindViewById(Resource.Id.tViewTrack) as TextView;
             var textTime = view.FindViewById(Resource.Id.tViewTime) as TextView;
             var imageArtist = view.FindViewById(Resource.Id.iViewArtist) as ImageView;
-
+            
             var item = HistoryPlayObj.LstHistory[position];
             textArtist.Text = item.ArtistName;
             textTrack.Text = item.TrackName;
             textTime.Text = item.TimeVal;
-            imageArtist.SetImageBitmap(WebProvider.GetImageBitmapFromUrl(item.ImagePath));            
+            imageArtist.SetImageBitmap(item.ImageArtist);            
 
             return view;
         }

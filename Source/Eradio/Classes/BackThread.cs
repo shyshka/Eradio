@@ -9,17 +9,7 @@ namespace Eradio
     public class BackThread
     {
         private const int interval = 10000;
-        private Thread threadNowPlay;
-        private Thread threadHistoryPlay;
-
-        public delegate void NowPlayEventHandler(object sender, NowPlay arg);
-        public event NowPlayEventHandler NowPlayChanged;
-
-        public delegate void HistoryPlayHandler(object sendeg, HistoryPlay arg);
-        public event HistoryPlayHandler HistoryPlayChanged;
-
-        public delegate void TopTenEventHandler(object sender, TopTen arg);
-        public event TopTenEventHandler TopTenChanged;
+        private Thread threadNowPlay;        
 
         private NowPlay _nowPlayObj;
         private NowPlay NowPlayObj
@@ -31,7 +21,7 @@ namespace Eradio
                 if (_nowPlayObj != null)
                     if (_nowPlayObj.Equals(value)) return;
                 _nowPlayObj = value;
-                if (NowPlayChanged != null) NowPlayChanged(null, _nowPlayObj);
+                Global.SendOnNowPlayChanged(_nowPlayObj);
             }
         }
 
@@ -45,7 +35,7 @@ namespace Eradio
                 if (_historyPlayObj != null)
                     if (_historyPlayObj.Equals(value)) return;
                 _historyPlayObj = value;
-                if (HistoryPlayChanged != null) HistoryPlayChanged(null, _historyPlayObj);
+                Global.SendOnHistoryPlayChanged(_historyPlayObj);
             }
         }
 
@@ -59,41 +49,50 @@ namespace Eradio
                 if (_topTenObj != null)
                     if (_topTenObj.Equals(value)) return;
                 _topTenObj = value;
-                if (TopTenChanged != null) TopTenChanged(null, _topTenObj);
+                Global.SendOnTopTenChanged(_topTenObj);                
             }
         }
 
         public BackThread()
         {
-            this.NowPlayChanged += delegate
+            this._nowPlayObj = new NowPlay();
+            this._historyPlayObj = new HistoryPlay();
+            this._topTenObj = new TopTen();           
+
+            Global.OnNowPlayChanged += delegate
             {
-                threadHistoryPlay = new Thread(new ThreadStart(delegate
+                new Thread(new ThreadStart(delegate
                 {
                     HistoryPlayObj = HistoryPlay.CreateNewObject();
                     TopTenObj = TopTen.CreateNewObject();
-                }));
-                threadHistoryPlay.Start();
+                })).Start();                
             };
+        }
+
+        public void RefreshData()
+        {
+            Global.SendOnNowPlayChanged(_nowPlayObj);
+            Global.SendOnHistoryPlayChanged(_historyPlayObj);
+            Global.SendOnTopTenChanged(_topTenObj);
         }
 
         public void StartThread()
         {
-            Global.SendOnMediaStateChanged();
+            StopThread();
             threadNowPlay = new Thread(new ThreadStart(delegate
+            {
+                while (true)
                 {
-                    while (true)
-                    {
-                        NowPlayObj = NowPlay.CreateNewObject();
-                        Thread.Sleep(interval);
-                    }
-                }));
+                    NowPlayObj = NowPlay.CreateNewObject();
+                    Thread.Sleep(interval);
+                }
+            }));
             threadNowPlay.Start();           
         }
 
         public void StopThread()
         {
            if (threadNowPlay != null) threadNowPlay.Abort();
-           if (threadHistoryPlay != null) threadHistoryPlay.Abort();
         }
     }
 }

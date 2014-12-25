@@ -21,6 +21,11 @@ namespace Eradio
             public Android.Graphics.Bitmap ImageArtist;
         }
 
+        public HistoryPlay()
+        {
+            LstHistory = new List<HistoryPlayItem>();
+        }
+
         private List<HistoryPlayItem> _lstHistory;
         public List<HistoryPlayItem> LstHistory
         {
@@ -58,8 +63,7 @@ namespace Eradio
                 MatchCollection tracks = Regex.Matches(s, sTrack);
                 MatchCollection times = Regex.Matches(s, sTime);
 
-                HistoryPlay historyPlayObj = new HistoryPlay();
-                historyPlayObj.LstHistory = new List<HistoryPlayItem>();
+                HistoryPlay historyPlayObj = new HistoryPlay();                
                 for (int i = 0; i < 10; i++)
                 {
                     historyPlayObj._lstHistory.Add(new HistoryPlayItem
@@ -67,8 +71,8 @@ namespace Eradio
                         ImagePath = pictures[i].Value.Remove(0, 10).Trim('"'),
                         ArtistName = artists[i].Value.Remove(0, 9).Trim(' '),
                         TrackName = tracks[i].Value.Remove(0, 8),
-                        TimeVal = times[i].Value.Remove(0, 7).Trim(' ')/*,
-                        ImageArtist = /*WebContent.LoadPicture(pictures[i].Value.Remove(0, 10).Trim('"'))*/
+                        TimeVal = times[i].Value.Remove(0, 7).Trim(' '),
+                        ImageArtist = WebProvider.GetImageBitmapFromUrl(pictures[i].Value.Remove(0, 10).Trim('"'))
                     });                    
                 }
                 return historyPlayObj;

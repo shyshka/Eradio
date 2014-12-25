@@ -12,6 +12,7 @@ using System.IO;
 using Android.Media;
 using System.IO.Compression;
 using Android.Support.V4.App;
+using Android.Views.Animations;
 
 namespace Eradio
 {
@@ -19,7 +20,6 @@ namespace Eradio
     public class ActMain : Activity
     {
         private ImageButton btnPlay;
-        private Button btnSleep;
         private TextView tViewArtist;
         private TextView tViewTrack;
         private ImageView iViewTrack;
@@ -32,20 +32,16 @@ namespace Eradio
             this.SetContentView(Resource.Layout.ActMain);
 
             #region OnError
-            Global.OnError += (obj, arg) =>
-            {
-                Global.SendOnLoadEnded();
-                RunOnUiThread(delegate
+            Global.OnError += (obj, arg) => RunOnUiThread(delegate
                 {
-                    Toast toast = Toast.MakeText(this, (arg as Global.MessageEventArgs).Message, ToastLength.Short);
-                    toast.SetGravity(GravityFlags.Bottom, 0, 0);
+                    Toast toast = Toast.MakeText(this, arg, ToastLength.Short);
+                    toast.SetGravity(GravityFlags.Bottom, 0, 0);                    
                     LinearLayout toastContainer = (LinearLayout)toast.View;
                     ImageView imageView = new ImageView(this);
                     imageView.SetImageResource(Resource.Drawable.Alert);
-                    toastContainer.AddView(imageView, 0);
+                    toastContainer.AddView(imageView, 0);                    
                     toast.Show();
                 });
-            };
             #endregion
 
             #region OnLoadStarted
@@ -72,47 +68,56 @@ namespace Eradio
             {
                 this.Title = string.Format("{0} {1}", Global.MsgTitle, Global.MsgLoading);
 
-
-                // These are the values that we want to pass to the next activity
-                Bundle valuesForActivity = new Bundle();
+                //// These are the values that we want to pass to the next activity
+                //Bundle valuesForActivity = new Bundle();
                 
 
-                // Create the PendingIntent with the back stack             
-                // When the user clicks the notification, SecondActivity will start up.
-                Intent resultIntent = new Intent(this, typeof(ActMain));
-                resultIntent.PutExtras(valuesForActivity); // Pass some values to SecondActivity.
+                //// Create the PendingIntent with the back stack             
+                //// When the user clicks the notification, SecondActivity will start up.
+                //Intent resultIntent = new Intent(this, typeof(ActMain));
+                //resultIntent.PutExtras(valuesForActivity); // Pass some values to SecondActivity.
 
-                TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
-                //stackBuilder.AddParentStack(ActMain);
-                stackBuilder.AddNextIntent(resultIntent);
+                //TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+                ////stackBuilder.AddParentStack(ActMain);
+                //stackBuilder.AddNextIntent(resultIntent);
 
-                PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.UpdateCurrent);
+                //PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.UpdateCurrent);
 
-                // Build the notification
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                    .SetAutoCancel(true) // dismiss the notification from the notification area when the user clicks on it
-                    .SetContentIntent(resultPendingIntent) // start up this activity when the user clicks the intent.
-                    .SetContentTitle("Є! Rock Радіо") // Set the title
-                    //.SetNumber(_count) // Display the count in the Content Info
-                    .SetSmallIcon(Resource.Drawable.Erock) // This is the icon to display
-                    .SetContentText("Ви слухаєте Є! Rock Радіо"); // the message to display.
+                //// Build the notification
+                //NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                //    .SetAutoCancel(true) // dismiss the notification from the notification area when the user clicks on it
+                //    .SetContentIntent(resultPendingIntent) // start up this activity when the user clicks the intent.
+                //    .SetContentTitle("Є! Rock Радіо") // Set the title
+                //    //.SetNumber(_count) // Display the count in the Content Info
+                //    .SetSmallIcon(Resource.Drawable.Erock) // This is the icon to display
+                //    .SetContentText("Ви слухаєте Є! Rock Радіо"); // the message to display.
 
-                // Finally publish the notification
-                NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
-                notificationManager.Notify(14588, builder.Build());
+                //// Finally publish the notification
+                //NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
+                //notificationManager.Notify(14588, builder.Build());
             });       
             #endregion
 
             #region OnMediaStateChanged
             Global.OnMediaStateChanged += delegate
             {
-                this.btnPlay.SetImageResource(Global.MediaProviderObj.MPlayerObj.IsPlaying ? Resource.Drawable.Stop : Resource.Drawable.Play);
+                this.btnPlay.SetImageResource(Global.IsPlay()? 
+                    Resource.Drawable.Stop : 
+                    Resource.Drawable.Play);
             };
             #endregion
 
             #region Visual Elements
             this.btnPlay = FindViewById<ImageButton>(Resource.Id.btnPlay);
-            this.btnPlay.Click += btnPlay_Click;
+            this.btnPlay.Click += delegate
+            {
+                if (Global.IsPlay()) Global.StopPlay();
+                else Global.StartPlay();
+            };
+            this.btnPlay.SetImageResource(Global.IsPlay() ?
+                    Resource.Drawable.Stop :
+                    Resource.Drawable.Play);
+
             this.tViewArtist = FindViewById<TextView>(Resource.Id.tViewArtist);
             this.tViewTrack = FindViewById<TextView>(Resource.Id.tViewTrack);
             this.iViewTrack = FindViewById<ImageView>(Resource.Id.iViewArtist);
@@ -121,42 +126,53 @@ namespace Eradio
             #endregion
 
             #region Thread
-            BackThread thread = new BackThread();
-            thread.NowPlayChanged += (obj, arg) =>
+            Global.OnNowPlayChanged += (obj, arg) =>
                 this.RunOnUiThread(() =>
                 {
                     tViewArtist.Text = "ARTIST: " + arg.ARTIST_NAME;
                     tViewTrack.Text = "TRACK: " + arg.TRACK_SONG;
-                    iViewTrack.SetImageBitmap(WebProvider.GetImageBitmapFromUrl(arg.PICTURE));
+                    Android.Graphics.Bitmap logo = WebProvider.GetImageBitmapFromUrl(arg.PICTURE);
+                    if (logo != null) iViewTrack.SetImageBitmap(logo);
+                    else iViewTrack.SetImageResource(Resource.Drawable.Logo);
+                    Animation anim = AnimationUtils.LoadAnimation(this, Resource.Layout.AnimCombo);
+                    iViewTrack.StartAnimation(anim);
                 });
 
-            thread.HistoryPlayChanged += (obj, arg) =>
+            Global.OnHistoryPlayChanged += (obj, arg) =>
                 this.RunOnUiThread(() =>
                     {
                         lViewHistory.Adapter = new HistoryPlayAdapter(this, arg);
                     });
-            thread.StartThread();
+            Global.RefreshData();
             #endregion
         }
 
-        void btnPlay_Click(object sender, EventArgs e)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            if (Global.MediaProviderObj.MPlayerObj.IsPlaying) this.StopMedia();
-            else this.PlayMedia();
+            menu.Add(0, 1, 1, "Налаштування");
+            menu.Add(0, 0, 0, "EXIT");
+
+            return base.OnCreateOptionsMenu(menu);
         }
 
-        private void PlayMedia()
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            Global.SendOnLoadStart();
-            Global.MediaProviderObj.MPlayerObj.Reset();
-            Global.MediaProviderObj.MPlayerObj.SetDataSource(Global.MediaStreamPath);
-            Global.MediaProviderObj.MPlayerObj.PrepareAsync();
+            switch (item.ItemId)
+            {
+                case 0:
+                    Global.StopPlay();
+                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                    this.Finish();
+                    break;
+            }  
+
+            return base.OnOptionsItemSelected(item);
         }
 
-        private void StopMedia()
+        protected override void OnSaveInstanceState(Bundle outState)
         {
-            Global.MediaProviderObj.MPlayerObj.Reset();
-            Global.SendOnMediaStateChanged();
+            Global.ClearEvents();            
+            base.OnSaveInstanceState(outState);
         }
     }
 }

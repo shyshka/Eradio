@@ -70,7 +70,7 @@ namespace Request
                 threadHistoryPlay = new Thread(new ThreadStart(delegate
                 {
                     HistoryPlayObj = HistoryPlay.CreateNewObject();
-                    TopTenObj = TopTen.CreateNewObject();
+                    //TopTenObj = TopTen.CreateNewObject();
                 }));
                 threadHistoryPlay.Start();
             };
@@ -83,7 +83,7 @@ namespace Request
                     while (true)
                     {
                         NowPlayObj = NowPlay.CreateNewObject();
-                        Thread.Sleep(interval);
+                        Thread.Sleep(interval);                        
                     }
                 }));
             threadNowPlay.Start();           

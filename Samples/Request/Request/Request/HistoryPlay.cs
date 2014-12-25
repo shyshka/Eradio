@@ -69,8 +69,8 @@ namespace Request
                         ImagePath = pictures[i].Value.Remove(0, 10).Trim('"'),
                         ArtistName = artists[i].Value.Remove(0, 9).Trim(' '),
                         TrackName = tracks[i].Value.Remove(0, 8),
-                        TimeVal = times[i].Value.Remove(0, 7).Trim(' '),
-                        ImageArtist = WebContent.LoadPicture(pictures[i].Value.Remove(0, 10).Trim('"'))
+                        TimeVal = times[i].Value.Remove(0, 7).Trim(' ')/*,
+                        ImageArtist = WebContent.LoadPicture(pictures[i].Value.Remove(0, 10).Trim('"'))*/
                     });                    
                 }
                 return historyPlayObj;

@@ -16,13 +16,6 @@ namespace Eradio
     public class MediaProvider
     {
         private MediaPlayer _mPlayerObj;
-
-        public MediaPlayer MPlayerObj
-        {
-            get { return _mPlayerObj; }
-            set { _mPlayerObj = value; }
-        }
-
         public MediaProvider()
         {
             this._mPlayerObj = new MediaPlayer();
@@ -37,6 +30,25 @@ namespace Eradio
             this._mPlayerObj.Completion += delegate { Global.SendOnError(Global.MsgCannotLoadStream); };
             this._mPlayerObj.Error += delegate { Global.SendOnError(Global.MsgCannotLoadStream); };
             this._mPlayerObj.SeekComplete += delegate { };
+        }
+
+        public bool IsPlaying()
+        {
+            return this._mPlayerObj.IsPlaying;            
+        }
+
+        public void PlayMedia()
+        {
+            Global.SendOnLoadStart();
+            this._mPlayerObj.Reset();
+            this._mPlayerObj.SetDataSource(Global.MediaStreamPath);
+            this._mPlayerObj.PrepareAsync();
+        }
+
+        public void StopMedia()
+        {
+            this._mPlayerObj.Reset();
+            Global.SendOnMediaStateChanged();
         }
     }
 }
