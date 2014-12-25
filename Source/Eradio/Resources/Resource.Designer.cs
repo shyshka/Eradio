@@ -58,13 +58,16 @@ namespace Eradio
 			public const int Icon = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Play = 2130837510;
+			public const int Logo = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Stop = 2130837511;
+			public const int Play = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int Ukraine = 2130837512;
+			public const int Stop = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Ukraine = 2130837513;
 			
 			private Drawable()
 			{
@@ -74,26 +77,32 @@ namespace Eradio
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050006
-			public const int btnDanceRadio = 2131034118;
-			
 			// aapt resource value: 0x7f050005
-			public const int btnHitRadio = 2131034117;
+			public const int btnPlay = 2131034117;
 			
 			// aapt resource value: 0x7f050002
-			public const int btnPlay = 2131034114;
+			public const int iViewArtist = 2131034114;
 			
-			// aapt resource value: 0x7f050004
-			public const int btnRockRadio = 2131034116;
-			
-			// aapt resource value: 0x7f050003
-			public const int btnUaRadio = 2131034115;
-			
-			// aapt resource value: 0x7f050001
-			public const int tViewCurStation = 2131034113;
+			// aapt resource value: 0x7f050006
+			public const int lViewHistoryPlay = 2131034118;
 			
 			// aapt resource value: 0x7f050000
-			public const int textView1 = 2131034112;
+			public const int linearLayout1 = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int tViewArtist = 2131034116;
+			
+			// aapt resource value: 0x7f050008
+			public const int tViewTime = 2131034120;
+			
+			// aapt resource value: 0x7f050003
+			public const int tViewTrack = 2131034115;
+			
+			// aapt resource value: 0x7f050001
+			public const int tableLayout1 = 2131034113;
+			
+			// aapt resource value: 0x7f050007
+			public const int tableRow1 = 2131034119;
 			
 			private Id()
 			{
@@ -104,7 +113,10 @@ namespace Eradio
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int ActMain = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int HistoryItem = 2130903041;
 			
 			private Layout()
 			{
