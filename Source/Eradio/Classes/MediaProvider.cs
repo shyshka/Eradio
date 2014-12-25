@@ -47,7 +47,7 @@ namespace Eradio
 
         public void StopMedia()
         {
-            this._mPlayerObj.Reset();
+            this._mPlayerObj.Stop();            
             Global.SendOnMediaStateChanged();
         }
     }

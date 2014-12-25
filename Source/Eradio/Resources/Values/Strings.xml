@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">Eradio</string>
+    <string name="PlayListName">Плейліст</string>
+    <string name="ApplicationName">Є! ROCK Радіо</string>
 </resources>

@@ -71,9 +71,12 @@ namespace Eradio
 
         public void RefreshData()
         {
-            Global.SendOnNowPlayChanged(_nowPlayObj);
-            Global.SendOnHistoryPlayChanged(_historyPlayObj);
-            Global.SendOnTopTenChanged(_topTenObj);
+            if (Global.IsDestoyed && !string.IsNullOrEmpty(_nowPlayObj.ARTIST_NAME))
+            {
+                Global.SendOnNowPlayChanged(_nowPlayObj);
+                Global.SendOnHistoryPlayChanged(_historyPlayObj);
+                Global.SendOnTopTenChanged(_topTenObj);
+            }
         }
 
         public void StartThread()

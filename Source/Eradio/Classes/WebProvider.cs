@@ -23,7 +23,7 @@ namespace Eradio
                 else
                 {
                     WebClient webClient = new WebClient();
-                    var imageBytes = webClient.DownloadData(url);
+                    byte[] imageBytes = webClient.DownloadData(url);
                     File.WriteAllBytes(fileOutputPath, imageBytes);
                     if (imageBytes != null && imageBytes.Length > 0)
                         imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);

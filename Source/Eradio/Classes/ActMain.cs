@@ -142,15 +142,17 @@ namespace Eradio
                 this.RunOnUiThread(() =>
                     {
                         lViewHistory.Adapter = new HistoryPlayAdapter(this, arg);
-                    });
-            Global.RefreshData();
+                    });            
             #endregion
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            menu.Add(0, 1, 1, "Налаштування");
-            menu.Add(0, 0, 0, "EXIT");
+            menu.Add(0, 0, 0, "Налаштування");            
+            menu.Add(0, 1, 1, "Закрити");
+
+            menu.GetItem(0).SetIcon(Resource.Drawable.Settings);
+            menu.GetItem(1).SetIcon(Resource.Drawable.Exit);
 
             return base.OnCreateOptionsMenu(menu);
         }
@@ -160,10 +162,13 @@ namespace Eradio
             switch (item.ItemId)
             {
                 case 0:
+                    Global.SendOnError("hello");
+                    break;
+                case 1:                    
                     Global.StopPlay();
                     Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
                     this.Finish();
-                    break;
+                    break;                
             }  
 
             return base.OnOptionsItemSelected(item);
@@ -171,8 +176,15 @@ namespace Eradio
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
-            Global.ClearEvents();            
+            Global.ClearEvents();
+            Global.IsDestoyed = true;
             base.OnSaveInstanceState(outState);
+        }
+
+        protected override void OnRestoreInstanceState(Bundle savedInstanceState)
+        {
+            Global.RefreshData();
+            base.OnRestoreInstanceState(savedInstanceState);
         }
     }
 }

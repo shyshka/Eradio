@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1">
+    <TableRow>
+        <TableLayout
+            android:layout_width="170.0dp">
+            <TableRow>
+                <ImageView
+                    android:id="@+id/iViewArtist"
+                    android:scaleType="fitCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70.0dp"
+                    android:src="@drawable/Erock"
+                    android:padding="07.0dp"
+                    android:layout_column="0" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewTrack"
+                    android:textColor="#FF0000"
+                    android:text="Track: "
+                    android:padding="05.0dp"
+                    android:textSize="16.0dp"
+                    android:textStyle="bold"
+                    android:layout_column="0" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewArtist"
+                    android:textColor="#FF0000"
+                    android:padding="05.0dp"
+                    android:text="Artist: "
+                    android:textSize="16.0dp"
+                    android:textStyle="bold"
+                    android:layout_column="0" />
+            </TableRow>
+            <TableRow>
+                <ImageButton
+                    android:src="@drawable/Play"
+                    android:id="@+id/btnPlay"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:padding="03.0dp"
+                    android:clickable="true"
+                    android:layout_column="0" />
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_column="1"            
+            android:layout_height="fill_parent">
+            <TextView
+                android:text="@string/PlayListName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:padding="05.0dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:gravity="center_horizontal"
+                android:background="@android:color/white"
+                android:id="@+id/textView1" />
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lViewHistoryPlay"
+                android:clickable="true" />
+        </LinearLayout>
+    </TableRow>
+</TableLayout>

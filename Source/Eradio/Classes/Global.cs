@@ -14,14 +14,14 @@ namespace Eradio
 {
     public static class Global
     {
+        public static bool IsDestoyed = false;
         private static MediaProvider _mediaProviderObj;
         private static BackThread _backThreadObj;
 
         static Global()
         {
             _mediaProviderObj = new MediaProvider();
-            _backThreadObj = new BackThread();
-            _backThreadObj.StartThread();
+            _backThreadObj = new BackThread();            
         }
 
         #region Messages
