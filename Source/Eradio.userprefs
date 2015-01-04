@@ -2,19 +2,25 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Eradio\Classes\HistoryPlay.cs" Line="18" Column="38" />
-      <File FileName="Eradio\Classes\WebProvider.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\ActMain.cs" Line="182" Column="62" />
-      <File FileName="Eradio\Classes\HistoryPlayAdapter.cs" Line="34" Column="10" />
+      <File FileName="Eradio\Classes\HistoryPlay.cs" Line="78" Column="1" />
+      <File FileName="Eradio\Classes\WebProvider.cs" Line="22" Column="21" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="95" Column="4" />
+      <File FileName="Eradio\Classes\HistoryPlayAdapter.cs" Line="52" Column="13" />
+      <File FileName="Eradio\Classes\Global.cs" Line="115" Column="9" />
+      <File FileName="Eradio\Classes\TopTen.cs" Line="1" Column="1" />
+      <File FileName="d:\Users\Oleg\Desktop\Eradio\Source\Eradio\Classes\BackThread.cs" Line="66" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ErockRadio" expanded="True">
+            <Node name="Classes" expanded="True" />
             <Node name="Properties" expanded="True" />
             <Node name="Resources" expanded="True">
-              <Node name="Layout" expanded="True">
-                <Node name="HistoryItem.xml" selected="True" />
+              <Node name="Layout" expanded="True" />
+              <Node name="Layout-land" expanded="True" />
+              <Node name="Layout-port" expanded="True">
+                <Node name="ActMain.axml" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -32,5 +38,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="192.168.56.100:5555" MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" />
+  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="192.168.56.100:5555" MonoForAntroid.PreferredDevice="3.3in WQVGA" AndroidDeviceId-Release="015d4a5ed6540a07" />
 </Properties>

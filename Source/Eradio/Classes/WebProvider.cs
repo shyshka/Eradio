@@ -19,7 +19,6 @@ namespace Eradio
                 string fileOutputPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), fileName);
 
                 if (File.Exists(fileOutputPath)) imageBitmap = BitmapFactory.DecodeFile(fileOutputPath);
-
                 else
                 {
                     WebClient webClient = new WebClient();

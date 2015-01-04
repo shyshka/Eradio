@@ -13,30 +13,10 @@
             android:src="@drawable/Erock"
             android:padding="07.0dp" />
         <LinearLayout
-            android:orientation="vertical">
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/tViewTrack"
-                android:textColor="#FF0000"
-                android:layout_width="fill_parent"
-                android:layout_height="30.0dp"
-                android:text="Track: "
-                android:padding="05.0dp"
-                android:textSize="16.0dp"
-                android:textStyle="bold" />
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/tViewArtist"
-                android:textColor="#FF0000"
-                android:layout_width="fill_parent"
-                android:layout_height="30.0dp"
-                android:padding="05.0dp"
-                android:text="Artist: "
-                android:textSize="16.0dp"
-                android:textStyle="bold" />
+            android:orientation="horizontal">
             <ImageButton
                 android:src="@drawable/Play"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="80.0dp"
                 android:id="@+id/btnPlay"
                 android:layout_centerHorizontal="true"
@@ -45,6 +25,36 @@
                 android:scaleType="fitStart"
                 android:padding="03.0dp"
                 android:clickable="true" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/linearLayout4">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewTrack"
+                    android:textColor="#FF0000"
+                    android:text="Track: "
+                    android:padding="05.0dp"
+                    android:textSize="16.0dp"
+                    android:textStyle="bold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tViewArtist"
+                    android:textColor="#FF0000"
+                    android:padding="05.0dp"
+                    android:text="Artist: "
+                    android:textSize="16.0dp"
+                    android:textStyle="bold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
     </TableRow>
     <TextView
@@ -59,12 +69,4 @@
     <ListView
         android:layout_height="match_parent"
         android:id="@+id/lViewHistoryPlay" />
-<!-- Property Change Conflict | id:@+id/linearLayout1 | minHeight removed -->
-<!-- Property Change Conflict | id:@+id/linearLayout1 | minWidth removed -->
-<!-- Property Change Conflict | id:__root__ | stretchColumns=1 -->
-<!-- Property Change Conflict | id:__root__ | shrinkColumns removed -->
-<!-- Property Change Conflict | id:__root__ | stretchColumns removed -->
-<!-- Property Change Conflict | id:@+id/linearLayout1 -->
-<!-- Property Change Conflict | id:@+id/linearLayout1 -->
-<!-- Property Change Conflict | id:@+id/lViewHistoryPlay -->
 </TableLayout>

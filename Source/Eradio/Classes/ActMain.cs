@@ -27,33 +27,31 @@ namespace Eradio
         private ProgressDialog prDlg;
 
         protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-            this.SetContentView(Resource.Layout.ActMain);      
+		{
+			base.OnCreate (bundle);
+			this.SetContentView (Resource.Layout.ActMain);      
 			this.AcceptEvents ();
 
+			Global.SendOnError ("created"+DateTime.Now.ToString());
+
 			#region Visual Elements
-			this.btnPlay = FindViewById<ImageButton>(Resource.Id.btnPlay);
-			this.btnPlay.Click += delegate
-			{
-				if (Global.IsPlay()) Global.StopPlay();
-				else Global.StartPlay();
+			this.btnPlay = FindViewById<ImageButton> (Resource.Id.btnPlay);
+			this.btnPlay.Click += delegate {
+				if (Global.IsPlay ())
+					Global.StopPlay ();
+				else
+					Global.StartPlay ();
 			};
-			this.btnPlay.SetImageResource(Global.IsPlay() ?
+			this.btnPlay.SetImageResource (Global.IsPlay () ?
 			                              Resource.Drawable.Stop :
 			                              Resource.Drawable.Play);
 			
-			this.tViewArtist = FindViewById<TextView>(Resource.Id.tViewArtist);
-			this.tViewTrack = FindViewById<TextView>(Resource.Id.tViewTrack);
-			this.iViewTrack = FindViewById<ImageView>(Resource.Id.iViewArtist);
-			
-			this.lViewHistory = FindViewById<ListView>(Resource.Id.lViewHistoryPlay);
-			lViewHistory.ItemClick+=(obj,arg)=>
-			{
-				Toast.MakeText(this,arg.Position.ToString(),ToastLength.Short).Show();
-			};
+			this.tViewArtist = FindViewById<TextView> (Resource.Id.tViewArtist);
+			this.tViewTrack = FindViewById<TextView> (Resource.Id.tViewTrack);
+			this.iViewTrack = FindViewById<ImageView> (Resource.Id.iViewArtist);			
+			this.lViewHistory = FindViewById<ListView> (Resource.Id.lViewHistoryPlay);		
 			#endregion
-        }
+		}
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -96,19 +94,24 @@ namespace Eradio
 			base.OnRestoreInstanceState (savedInstanceState);
 		}
 
+		private void OnError(object obj,string arg)
+		{
+			RunOnUiThread (delegate {
+				Toast toast = Toast.MakeText (this, arg, ToastLength.Short);
+				toast.SetGravity (GravityFlags.Bottom, 0, 0);                    
+				LinearLayout toastContainer = (LinearLayout)toast.View;
+				ImageView imageView = new ImageView (this);
+				imageView.SetImageResource (Resource.Drawable.Alert);
+				toastContainer.AddView (imageView, 0);                    
+				toast.Show ();
+			});
+		}
+
 		private void AcceptEvents()
 		{
 			#region OnError
-			Global.OnError += (obj, arg) => RunOnUiThread(delegate
-			                                              {
-				Toast toast = Toast.MakeText(this, arg, ToastLength.Short);
-				toast.SetGravity(GravityFlags.Bottom, 0, 0);                    
-				LinearLayout toastContainer = (LinearLayout)toast.View;
-				ImageView imageView = new ImageView(this);
-				imageView.SetImageResource(Resource.Drawable.Alert);
-				toastContainer.AddView(imageView, 0);                    
-				toast.Show();
-			});
+			Global.OnError-=this.OnError;
+			Global.OnError += this.OnError;
 			#endregion
 			
 			#region OnLoadStarted
@@ -123,11 +126,9 @@ namespace Eradio
 			#endregion
 			
 			#region OnLoadEnded
-			Global.OnLoadEnd += (obj, arg) => RunOnUiThread(() =>
-			                                                {
+			Global.OnLoadEnd += (obj, arg) => RunOnUiThread(() =>{
 				if (prDlg != null) prDlg.Dismiss();
-			});
-			
+			});			
 			#endregion
 			
 			#region OnPlaying
@@ -173,7 +174,6 @@ namespace Eradio
 				                              Resource.Drawable.Play);
 			};
 			#endregion	
-
 			
 			#region Thread
 			Global.OnNowPlayChanged += (obj, arg) =>
