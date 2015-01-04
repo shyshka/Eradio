@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErockRadio", "Eradio\ErockRadio.csproj", "{6E83E4C3-2150-4396-B7FB-D94C1103905A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Request", "..\Samples\Request\Request\Request\Request.csproj", "{31D71E80-32DA-40F9-9214-1A4ED80FD47B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,9 @@ Global
 		{6E83E4C3-2150-4396-B7FB-D94C1103905A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E83E4C3-2150-4396-B7FB-D94C1103905A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E83E4C3-2150-4396-B7FB-D94C1103905A}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{31D71E80-32DA-40F9-9214-1A4ED80FD47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31D71E80-32DA-40F9-9214-1A4ED80FD47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31D71E80-32DA-40F9-9214-1A4ED80FD47B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31D71E80-32DA-40F9-9214-1A4ED80FD47B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Eradio\ErockRadio.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

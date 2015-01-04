@@ -52,7 +52,7 @@
         </TableLayout>
         <LinearLayout
             android:orientation="vertical"
-            android:layout_column="1"            
+            android:layout_column="1"
             android:layout_height="fill_parent">
             <TextView
                 android:text="@string/PlayListName"

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Util;
 
 namespace Eradio
 {
@@ -43,12 +44,19 @@ namespace Eradio
             var textTrack = view.FindViewById(Resource.Id.tViewTrack) as TextView;
             var textTime = view.FindViewById(Resource.Id.tViewTime) as TextView;
             var imageArtist = view.FindViewById(Resource.Id.iViewArtist) as ImageView;
-            
+			            
             var item = HistoryPlayObj.LstHistory[position];
             textArtist.Text = item.ArtistName;
             textTrack.Text = item.TrackName;
             textTime.Text = item.TimeVal;
             imageArtist.SetImageBitmap(item.ImageArtist);            
+
+			var btnVk = view.FindViewById (Resource.Id.btnVk) as ImageButton;
+			btnVk.Click += delegate {
+				string vkText = string.Format ("I liked song: \n{0}\n{1}", item.ArtistName, item.TrackName);
+				Log.Debug("App","Clicked item vk "+position.ToString()+ vkText.Trim('\n'));
+				Toast.MakeText (_activity, vkText, ToastLength.Short).Show ();
+			};
 
             return view;
         }
