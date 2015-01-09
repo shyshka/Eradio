@@ -15,10 +15,10 @@ namespace Eradio
 {
     public class HistoryPlayAdapter:BaseAdapter
     {
-        public HistoryPlay HistoryPlayObj;
+        public HistoryPlayCollection HistoryPlayObj;
         private Activity _activity;
 
-        public HistoryPlayAdapter(Activity activity, HistoryPlay historyPlay)
+        public HistoryPlayAdapter(Activity activity, HistoryPlayCollection historyPlay)
         {
             _activity = activity;
             HistoryPlayObj = historyPlay;
@@ -26,7 +26,7 @@ namespace Eradio
 
         public override int Count
         {
-            get { return HistoryPlayObj.LstHistory.Count; }
+            get { return HistoryPlayObj.Count; }
         }
 
         public override Java.Lang.Object GetItem(int position)
@@ -45,7 +45,7 @@ namespace Eradio
 			var textTime = view.FindViewById (Resource.Id.tViewTime) as TextView;
 			var imageArtist = view.FindViewById (Resource.Id.iViewArtist) as ImageView;
 			            
-			var item = HistoryPlayObj.LstHistory [position];
+			var item = HistoryPlayObj[position];
 			textArtist.Text = item.ArtistName;
 			textTrack.Text = item.TrackName;
 			textTime.Text = item.TimeVal;
@@ -63,7 +63,7 @@ namespace Eradio
 
 		private void SetVk(object obj,EventArgs arg)
 		{
-			var item = HistoryPlayObj.LstHistory[int.Parse((obj as ImageView).Tag.ToString())];
+			var item = HistoryPlayObj[int.Parse((obj as ImageView).Tag.ToString())];
 			string vkText = string.Format ("I liked song: \n{0}\n{1}", item.ArtistName, item.TrackName);
 			Toast.MakeText (_activity, vkText, ToastLength.Short).Show ();
 

@@ -1,10 +1,7 @@
-﻿using Android.Graphics;
-using System;
-using System.Collections.Generic;
+﻿using Android.Util;
 using System.IO;
-using System.Linq;
+using Android.Graphics;
 using System.Net;
-using System.Text;
 
 namespace Eradio
 {
@@ -28,6 +25,7 @@ namespace Eradio
                         imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
                     webClient.Dispose();
                 }
+				Log.Debug("FilePath image",fileOutputPath+' '+File.Exists(fileOutputPath).ToString());
             }
             catch { return null; }
             return imageBitmap;

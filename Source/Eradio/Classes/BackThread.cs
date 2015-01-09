@@ -25,8 +25,8 @@ namespace Eradio
             }
         }
 
-        private HistoryPlay _historyPlayObj;
-        private HistoryPlay HistoryPlayObj
+        private HistoryPlayCollection _historyPlayObj;
+        private HistoryPlayCollection HistoryPlayObj
         {
             get { return _historyPlayObj; }
             set
@@ -56,14 +56,14 @@ namespace Eradio
         public BackThread()
         {
             this._nowPlayObj = new NowPlay();
-            this._historyPlayObj = new HistoryPlay();
+            this._historyPlayObj = new HistoryPlayCollection();
             this._topTenObj = new TopTen();           
 
             Global.OnNowPlayChanged += delegate
             {
                 new Thread(new ThreadStart(delegate
                 {
-                    HistoryPlayObj = HistoryPlay.CreateNewObject();
+                    HistoryPlayObj = HistoryPlayCollection.CreateNewObject();
                     TopTenObj = TopTen.CreateNewObject();
                 })).Start();                
             };
