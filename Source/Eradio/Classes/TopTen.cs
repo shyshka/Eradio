@@ -85,6 +85,11 @@ namespace Eradio
             if (objNowPlay.TRACK_SONG != this.TRACK_SONG) res = false;
             if (objNowPlay.PICTURE != this.PICTURE) res = false;*/
             return false;
-        }        
+        }     
+
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode ();
+		}   
     }
 }

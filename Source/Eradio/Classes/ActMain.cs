@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Android.App;
 using Android.Content;
@@ -30,27 +30,52 @@ namespace Eradio
 		{
 			base.OnCreate (bundle);
 			this.SetContentView (Resource.Layout.ActMain);      
-			this.AcceptEvents ();
-
-			Global.SendOnError ("created"+DateTime.Now.ToString());
 
 			#region Visual Elements
 			this.btnPlay = FindViewById<ImageButton> (Resource.Id.btnPlay);
-			this.btnPlay.Click += delegate {
-				if (Global.IsPlay ())
-					Global.StopPlay ();
-				else
-					Global.StartPlay ();
-			};
-			this.btnPlay.SetImageResource (Global.IsPlay () ?
-			                              Resource.Drawable.Stop :
-			                              Resource.Drawable.Play);
-			
+			this.btnPlay.Click += this.btnPlay_OnClick;
+
 			this.tViewArtist = FindViewById<TextView> (Resource.Id.tViewArtist);
 			this.tViewTrack = FindViewById<TextView> (Resource.Id.tViewTrack);
 			this.iViewTrack = FindViewById<ImageView> (Resource.Id.iViewArtist);			
 			this.lViewHistory = FindViewById<ListView> (Resource.Id.lViewHistoryPlay);		
 			#endregion
+
+			TabHost tabHost = FindViewById<TabHost> (Resource.Id.tabHost1);
+			tabHost.Setup ();
+			TabHost.TabSpec tabSpec;
+
+			tabSpec = tabHost.NewTabSpec("tag1");
+			View v1 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v1.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Останні 10";
+			tabSpec.SetIndicator (v1);
+			tabSpec.SetContent (Resource.Id.linearLayout6);
+			tabHost.AddTab (tabSpec);
+
+			tabSpec = tabHost.NewTabSpec ("tag2");
+			View v2 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v2.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Топ 10";
+			tabSpec.SetIndicator (v2);
+			tabSpec.SetContent (Resource.Id.linearLayout7);
+			tabHost.AddTab (tabSpec);
+
+			tabSpec = tabHost.NewTabSpec ("tag3");
+			View v3 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v3.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Нові пісні";
+			tabSpec.SetIndicator (v3);
+			tabSpec.SetContent (Resource.Id.linearLayout8);
+			tabHost.AddTab (tabSpec);
+
+			this.AcceptEvents ();
+			Global.RefreshData ();
+		}
+
+		public void btnPlay_OnClick(object obj, EventArgs arg)
+		{
+			if (Global.IsPlay ())
+				Global.StopPlay ();
+			else
+				Global.StartPlay ();
 		}
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -69,7 +94,7 @@ namespace Eradio
             switch (item.ItemId)
             {
                 case 0:
-                    Global.SendOnError("hello");
+                    Global.SendOnError("Налаштування");
                     break;
                 case 1:                    
                     Global.StopPlay();
@@ -83,115 +108,99 @@ namespace Eradio
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
-            //Global.ClearEvents();
+            this.ClearEvents();
             Global.IsDestoyed = true;
             base.OnSaveInstanceState(outState);
         }
 
         protected override void OnRestoreInstanceState(Bundle savedInstanceState)
         {
-			Global.RefreshData ();
+
 			base.OnRestoreInstanceState (savedInstanceState);
 		}
 
 		private void OnError(object obj,string arg)
 		{
-			RunOnUiThread (delegate {
-				Toast toast = Toast.MakeText (this, arg, ToastLength.Short);
-				toast.SetGravity (GravityFlags.Bottom, 0, 0);                    
-				LinearLayout toastContainer = (LinearLayout)toast.View;
-				ImageView imageView = new ImageView (this);
-				imageView.SetImageResource (Resource.Drawable.Alert);
-				toastContainer.AddView (imageView, 0);                    
-				toast.Show ();
+			RunOnUiThread (() => Global.ShowToast (this, arg));
+		}
+
+		private void OnLoadStart(object obj,EventArgs arg)
+		{
+			RunOnUiThread (() => {
+				prDlg = ProgressDialog.Show (this, Global.MsgTitle, Global.MsgLoading, true, false);
+				prDlg.Show ();
 			});
+		}
+
+		private void OnLoadEnded(object obj,EventArgs arg)
+		{
+			RunOnUiThread (() => {
+				try {
+					prDlg.Dismiss ();
+				} catch {
+				}
+				;
+			});
+		}
+
+		private void OnPlaying(object obj, EventArgs arg)
+		{
+			RunOnUiThread (() => {
+
+			});      
+		}
+
+		private void OnMediaStateChanged(object obj, EventArgs arg)
+		{
+			RunOnUiThread (() => {
+				this.btnPlay.SetImageResource (Global.IsPlay () ? 
+			                              Resource.Drawable.Stop : 
+			                              Resource.Drawable.Play);
+			});
+		}
+
+		private void OnNowPlayChanged(object obj, NowPlay arg)
+		{
+			RunOnUiThread (() => {
+				tViewArtist.Text = arg.ARTIST_NAME;
+				tViewTrack.Text = arg.TRACK_SONG;
+				Android.Graphics.Bitmap logo = WebProvider.GetImageBitmapFromUrl (arg.PICTURE);
+				if (logo != null)
+					iViewTrack.SetImageBitmap (logo);
+				else
+					iViewTrack.SetImageResource (Resource.Drawable.Erock);
+				Animation anim = AnimationUtils.LoadAnimation (this, Resource.Layout.AnimCombo);
+				iViewTrack.StartAnimation (anim);
+			});
+		}
+
+		private void OnHistoryPlayChanged(object obj, HistoryPlayCollection arg)
+		{
+			RunOnUiThread (() => {
+				lViewHistory.Adapter = new HistoryPlayAdapter (this, arg);
+			});            
+		}
+
+		private void ClearEvents()
+		{
+			Global.OnError -= this.OnError;
+			Global.OnLoadStart -= this.OnLoadStart;
+			Global.OnLoadEnd -= this.OnLoadEnded;
+			Global.OnPlaying -= this.OnPlaying;
+			Global.OnMediaStateChanged -= this.OnMediaStateChanged;
+			Global.OnNowPlayChanged -= this.OnNowPlayChanged;
+			Global.OnHistoryPlayChanged -= this.OnHistoryPlayChanged;	
 		}
 
 		private void AcceptEvents()
 		{
-			#region OnError
-			Global.OnError-=this.OnError;
 			Global.OnError += this.OnError;
-			#endregion
-			
-			#region OnLoadStarted
-			Global.OnLoadStart += delegate
-			{
-				RunOnUiThread(delegate
-				              {
-					prDlg = ProgressDialog.Show(this, Global.MsgTitle, Global.MsgLoading, true, false);
-					prDlg.Show();
-				});
-			};
-			#endregion
-			
-			#region OnLoadEnded
-			Global.OnLoadEnd += (obj, arg) => RunOnUiThread(() =>{
-				if (prDlg != null) prDlg.Dismiss();
-			});			
-			#endregion
-			
-			#region OnPlaying
-			Global.OnPlaying += (obj, arg) => RunOnUiThread(() =>
-			                                                {
-				this.Title = string.Format("{0} {1}", Global.MsgTitle, Global.MsgLoading);
-				
-				//// These are the values that we want to pass to the next activity
-				//Bundle valuesForActivity = new Bundle();
-				
-				
-				//// Create the PendingIntent with the back stack             
-				//// When the user clicks the notification, SecondActivity will start up.
-				//Intent resultIntent = new Intent(this, typeof(ActMain));
-				//resultIntent.PutExtras(valuesForActivity); // Pass some values to SecondActivity.
-				
-				//TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
-				////stackBuilder.AddParentStack(ActMain);
-				//stackBuilder.AddNextIntent(resultIntent);
-				
-				//PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.UpdateCurrent);
-				
-				//// Build the notification
-				//NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-				//    .SetAutoCancel(true) // dismiss the notification from the notification area when the user clicks on it
-				//    .SetContentIntent(resultPendingIntent) // start up this activity when the user clicks the intent.
-				//    .SetContentTitle("Є! Rock Радіо") // Set the title
-				//    //.SetNumber(_count) // Display the count in the Content Info
-				//    .SetSmallIcon(Resource.Drawable.Erock) // This is the icon to display
-				//    .SetContentText("Ви слухаєте Є! Rock Радіо"); // the message to display.
-				
-				//// Finally publish the notification
-				//NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
-				//notificationManager.Notify(14588, builder.Build());
-			});       
-			#endregion
-			
-			#region OnMediaStateChanged
-			Global.OnMediaStateChanged += delegate
-			{
-				this.btnPlay.SetImageResource(Global.IsPlay()? 
-				                              Resource.Drawable.Stop : 
-				                              Resource.Drawable.Play);
-			};
-			#endregion	
-			
-			#region Thread
-			Global.OnNowPlayChanged += (obj, arg) =>
-				this.RunOnUiThread(delegate {
-					tViewArtist.Text = "ARTIST: " + arg.ARTIST_NAME;
-					tViewTrack.Text = "TRACK: " + arg.TRACK_SONG;
-					Android.Graphics.Bitmap logo = WebProvider.GetImageBitmapFromUrl(arg.PICTURE);
-					if (logo != null) iViewTrack.SetImageBitmap(logo);
-					else iViewTrack.SetImageResource(Resource.Drawable.Erock);
-					Animation anim = AnimationUtils.LoadAnimation(this, Resource.Layout.AnimCombo);
-					iViewTrack.StartAnimation(anim);
-				});
-			
-			Global.OnHistoryPlayChanged += (obj, arg) =>
-				this.RunOnUiThread(() => {
-					lViewHistory.Adapter = new HistoryPlayAdapter(this, arg);
-				});            
-			#endregion
+			Global.OnLoadStart += this.OnLoadStart;
+			Global.OnLoadEnd += this.OnLoadEnded;
+			Global.OnPlaying += this.OnPlaying;
+			Global.OnMediaStateChanged += this.OnMediaStateChanged;
+			Global.OnNowPlayChanged += this.OnNowPlayChanged;
+			Global.OnHistoryPlayChanged += this.OnHistoryPlayChanged;	
 		}
     }
 }

@@ -1,81 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:orientation="horizontal"
+    p1:orientation="vertical"
     p1:minWidth="25px"
     p1:minHeight="25px"
     p1:layout_width="fill_parent"
-    p1:layout_height="fill_parent"
-    p1:id="@+id/linearLayout3">
+    p1:layout_height="fill_parent">
     <LinearLayout
-        p1:orientation="vertical"
+        p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
-        p1:layout_width="wrap_content"
-        p1:layout_height="fill_parent"
-        p1:layout_weight="2"
-        p1:id="@+id/linearLayout1">
-        <ImageView
-            p1:id="@+id/iViewArtist"
-            p1:scaleType="fitCenter"
-            p1:src="@drawable/Erock"
-            p1:padding="07.0dp"
-            p1:layout_width="wrap_content"
-            p1:layout_height="120dp" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:id="@+id/tViewTrack"
-            p1:textColor="#FF0000"
-            p1:text="Track: "
-            p1:padding="05.0dp"
-            p1:textSize="16.0dp"
-            p1:textStyle="bold"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:id="@+id/tViewArtist"
-            p1:textColor="#FF0000"
-            p1:padding="05.0dp"
-            p1:text="Artist: "
-            p1:textSize="16.0dp"
-            p1:textStyle="bold"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content" />
-        <ImageButton
-            p1:src="@drawable/Play"
-            p1:id="@+id/btnPlay"
-            p1:adjustViewBounds="true"
-            p1:background="@null"
-            p1:scaleType="fitCenter"
-            p1:padding="03.0dp"
-            p1:clickable="true"
-            p1:layout_width="match_parent"
-            p1:layout_height="64dp"
-            p1:layout_gravity="fill" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="vertical"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="wrap_content"
-        p1:layout_height="fill_parent"
-        p1:layout_weight="1"
-        p1:id="@+id/linearLayout2">
-        <TextView
-            p1:text="@string/PlayListName"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:textColor="#FF0000"
-            p1:padding="05.0dp"
-            p1:textStyle="bold"
-            p1:textSize="18dp"
-            p1:gravity="center_horizontal"
-            p1:background="@android:color/white"
-            p1:id="@+id/textView1" />
-        <ListView
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:layout_weight="1">
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
             p1:layout_width="match_parent"
             p1:layout_height="match_parent"
-            p1:id="@+id/lViewHistoryPlay" />
+            p1:layout_weight="4"
+            p1:layout_margin="15dp"
+            p1:background="#ff181818">
+            <TextView
+                p1:text="Є! Rock Radio"
+                p1:textAppearance="?android:attr/textAppearanceLarge"
+                p1:layout_width="fill_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tViewTrack"
+                p1:gravity="center"
+                p1:layout_margin="10dp"
+                p1:textStyle="bold" />
+            <TextView
+                p1:textAppearance="?android:attr/textAppearanceMedium"
+                p1:layout_width="fill_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tViewArtist"
+                p1:gravity="center"
+                p1:layout_margin="10dp"
+                p1:textStyle="normal" />
+            <ImageView
+                p1:id="@+id/iViewArtist"
+                p1:scaleType="fitCenter"
+                p1:padding="07.0dp"
+                p1:layout_width="match_parent"
+                p1:layout_height="match_parent"
+                p1:layout_margin="10dp"
+                p1:src="@drawable/Erock" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:layout_weight="2"
+            p1:layout_margin="30dp"
+            p1:background="#ff181818">
+            <TabHost
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:id="@+id/tabHost1"
+                p1:layout_width="match_parent"
+                p1:layout_height="fill_parent"
+                p1:layout_weight="3">
+                <LinearLayout
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:orientation="vertical"
+                    p1:id="@+id/linearLayout5">
+                    <TabWidget
+                        p1:id="@android:id/tabs"
+                        p1:layout_width="match_parent"
+                        p1:layout_height="match_parent"
+                        p1:layout_weight="5" />
+                    <FrameLayout
+                        p1:id="@android:id/tabcontent"
+                        p1:layout_width="match_parent"
+                        p1:layout_height="match_parent"
+                        p1:layout_weight="1">
+                        <LinearLayout
+                            p1:layout_width="match_parent"
+                            p1:layout_height="match_parent"
+                            p1:id="@+id/linearLayout6"
+                            p1:orientation="vertical"
+                            p1:minWidth="25px"
+                            p1:minHeight="25px">
+                            <ListView
+                                p1:layout_width="match_parent"
+                                p1:layout_height="match_parent"
+                                p1:id="@+id/lViewHistoryPlay" />
+                        </LinearLayout>
+                        <LinearLayout
+                            p1:layout_width="match_parent"
+                            p1:layout_height="match_parent"
+                            p1:id="@+id/linearLayout7"
+                            p1:minWidth="25px"
+                            p1:minHeight="25px">
+                            <SeekBar
+                                p1:layout_width="fill_parent"
+                                p1:layout_height="wrap_content"
+                                p1:id="@+id/seekBar1" />
+                        </LinearLayout>
+                        <LinearLayout
+                            p1:layout_width="match_parent"
+                            p1:layout_height="match_parent"
+                            p1:id="@+id/linearLayout8"
+                            p1:minWidth="25px"
+                            p1:minHeight="25px">
+                            <ProgressBar
+                                style="?android:attr/progressBarStyleSmall"
+                                p1:layout_width="fill_parent"
+                                p1:layout_height="wrap_content"
+                                p1:id="@+id/progressBar1" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
+        </LinearLayout>
     </LinearLayout>
+    <ImageButton
+        p1:src="@drawable/Play"
+        p1:id="@+id/btnPlay"
+        p1:adjustViewBounds="true"
+        p1:background="@null"
+        p1:scaleType="fitCenter"
+        p1:clickable="true"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:layout_gravity="center"
+        p1:layout_margin="15dp"
+        p1:layout_weight="4" />
 </LinearLayout>

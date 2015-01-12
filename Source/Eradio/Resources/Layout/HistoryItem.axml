@@ -16,7 +16,6 @@
         android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:id="@+id/linearLayout3"
         android:layout_height="match_parent"
         android:padding="5dp"
         android:layout_weight="8"
@@ -49,13 +48,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1" />
     </LinearLayout>
-    <ImageButton
+    <ImageView
         android:src="@drawable/Vk"
-        android:id="@+id/btnVk"
         android:layout_width="64dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
+        android:id="@+id/btnVk"
         android:scaleType="fitCenter"
-        android:background="@null"
-        android:padding="10dp" />
+        android:padding="7dp" />
 </LinearLayout>

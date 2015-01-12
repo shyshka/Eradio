@@ -12,6 +12,8 @@ namespace Eradio
 {
     public class HistoryPlayCollection
     {
+		private List<HistoryPlayItem> _lstHistory;
+
 		public HistoryPlayCollection()
         {
 			this._lstHistory = new List<HistoryPlayItem> ();
@@ -26,9 +28,7 @@ namespace Eradio
 		public HistoryPlayItem this[int i]
 		{
 			get{ return this._lstHistory [i]; }
-		}
-
-        private List<HistoryPlayItem> _lstHistory;        
+		}        
 
 		/// <summary>
 		/// Метод ініціалізації обьекту типу HistoryPlayCollection
@@ -64,7 +64,7 @@ namespace Eradio
                 MatchCollection tracks = Regex.Matches(s, sTrack);
                 MatchCollection times = Regex.Matches(s, sTime);
 
-                HistoryPlayCollection historyPlayObj = new HistoryPlayCollection();                
+				HistoryPlayCollection historyPlayObj = new HistoryPlayCollection();
                 for (int i = 0; i < artists.Count; i++)
                 {
                     historyPlayObj._lstHistory.Add(new HistoryPlayItem
@@ -73,7 +73,7 @@ namespace Eradio
                         ArtistName = artists[i].Value.Remove(0, 9).Trim(' '),
                         TrackName = tracks[i].Value.Remove(0, 8),
                         TimeVal = times[i].Value.Remove(0, 7).Trim(' '),
-                        ImageArtist = WebProvider.GetImageBitmapFromUrl(pictures[i].Value.Remove(0, 10).Trim('"'))
+                        ImageBitmap = WebProvider.GetImageBitmapFromUrl(pictures[i].Value.Remove(0, 10).Trim('"'))
                     });                    
                 }
                 return historyPlayObj;

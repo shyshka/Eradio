@@ -47,5 +47,10 @@ namespace Eradio
             if (objNowPlay.PICTURE != this.PICTURE) res = false;
             return res;
         }
+
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode ();
+		}
     }
 }

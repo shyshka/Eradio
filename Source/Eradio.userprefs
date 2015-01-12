@@ -1,21 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\WebProvider.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
     <Files>
-      <File FileName="Eradio\Classes\WebProvider.cs" Line="28" Column="91" />
-      <File FileName="Eradio\Classes\ActMain.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\HistoryPlayAdapter.cs" Line="66" Column="29" />
-      <File FileName="Eradio\Classes\Global.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\TopTen.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\HistoryPlayCollection.cs" Line="76" Column="63" />
-      <File FileName="Eradio\Classes\HistoryPlayItem.cs" Line="7" Column="24" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="166" Column="23" />
+      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="46" Column="90" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ErockRadio" expanded="True">
             <Node name="Classes" expanded="True">
-              <Node name="WebProvider.cs" selected="True" />
+              <Node name="HistoryPlay" expanded="True" />
+              <Node name="ActMain.cs" selected="True" />
             </Node>
             <Node name="Properties" expanded="True" />
             <Node name="Resources" expanded="True">
@@ -38,5 +34,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="3.3in WQVGA" AndroidDeviceId-Release="015d4a5ed6540a07" />
+  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Release="015d4a5ed6540a07" />
 </Properties>

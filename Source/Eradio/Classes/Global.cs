@@ -79,9 +79,10 @@ namespace Eradio
         }
 
         public static void RefreshData()
-        {
-            _backThreadObj.RefreshData();
-        }
+		{
+			Global.OnMediaStateChanged (null, null);
+			_backThreadObj.RefreshData ();
+		}
 
         public static void StartPlay()
         {
@@ -99,7 +100,19 @@ namespace Eradio
         }
         #endregion
 
-        #region Event
+		public static void ShowToast(Context activity, string value)
+		{
+			Toast toast = Toast.MakeText (activity, value, ToastLength.Short);
+			toast.SetGravity (GravityFlags.Bottom, 0, 0);                    
+			LinearLayout toastContainer = (LinearLayout)toast.View;
+			ImageView imageView = new ImageView (activity);
+			imageView.SetImageResource (Resource.Drawable.Alert);
+			toastContainer.AddView (imageView, 0);                 
+			toastContainer.SetBackgroundColor (Android.Graphics.Color.Black);
+			toast.Show ();
+		}
+
+        #region Events
         public static event MessageEventHandler OnError;
         public static event EventHandler OnLoadStart;
         public static event EventHandler OnLoadEnd;

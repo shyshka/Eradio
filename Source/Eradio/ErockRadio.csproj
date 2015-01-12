@@ -63,11 +63,11 @@
     <Compile Include="Classes\TopTen.cs" />
     <Compile Include="Classes\WebProvider.cs" />
     <Compile Include="Classes\MediaProvider.cs" />
-    <Compile Include="Classes\HistoryPlayAdapter.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\HistoryPlayCollection.cs" />
-    <Compile Include="Classes\HistoryPlayItem.cs" />
+    <Compile Include="Classes\HistoryPlay\HistoryPlayAdapter.cs" />
+    <Compile Include="Classes\HistoryPlay\HistoryPlayCollection.cs" />
+    <Compile Include="Classes\HistoryPlay\HistoryPlayItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -82,6 +82,7 @@
     <AndroidResource Include="Resources\Layout-land\ActMain.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\TabHeader.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml">
@@ -120,4 +121,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Classes\HistoryPlay\" />
+  </ItemGroup>
 </Project>
