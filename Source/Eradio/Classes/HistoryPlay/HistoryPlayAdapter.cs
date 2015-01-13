@@ -43,7 +43,7 @@ namespace Eradio
 		{
 			View view = convertView;
 			if (convertView == null || !(convertView is LinearLayout))
-				view = _activity.LayoutInflater.Inflate (Resource.Layout.HistoryItem, parent, false);
+				view = _activity.LayoutInflater.Inflate (Resource.Layout.HistoryPlayItem, parent, false);
 
 			var textArtist = view.FindViewById (Resource.Id.tViewArtist) as TextView;
 			var textTrack = view.FindViewById (Resource.Id.tViewTrack) as TextView;

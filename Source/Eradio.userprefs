@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
     <Files>
-      <File FileName="Eradio\Classes\ActMain.cs" Line="71" Column="42" />
-      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="36" Column="3" />
-      <File FileName="Eradio\Resources\Drawable\tab_icon_selector.xml" Line="5" Column="12" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="207" Column="50" />
+      <File FileName="Eradio\Classes\WebProvider.cs" Line="20" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,12 +11,6 @@
           <Node name="ErockRadio" expanded="True">
             <Node name="Classes" expanded="True">
               <Node name="ActMain.cs" selected="True" />
-            </Node>
-            <Node name="Properties" expanded="True" />
-            <Node name="Resources" expanded="True">
-              <Node name="Drawable" expanded="True" />
-              <Node name="Layout-land" expanded="True" />
-              <Node name="Layout-port" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -31,8 +24,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="e:\Users\shyshka\Documents\Development\Android\Eradio\ErockRadio\Eradio\Source\Eradio\Classes\ActMain.cs" line="207" column="50" />
+      <Breakpoint file="e:\Users\shyshka\Documents\Development\Android\Eradio\ErockRadio\Eradio\Source\Eradio\Classes\ActMain.cs" line="214" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Release="015d4a5ed6540a07" />
+  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Release="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Debug="015d4a5ed6540a07" />
 </Properties>

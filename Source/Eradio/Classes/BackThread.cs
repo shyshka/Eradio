@@ -39,8 +39,8 @@ namespace Eradio
             }
         }
 
-        private TopTen _topTenObj;
-        private TopTen TopTenObj
+        private TopTenCollection _topTenObj;
+        private TopTenCollection TopTenObj
         {
             get { return _topTenObj; }
             set
@@ -57,14 +57,14 @@ namespace Eradio
         {
             this._nowPlayObj = new NowPlay();
             this._historyPlayObj = new HistoryPlayCollection();
-            this._topTenObj = new TopTen();           
+            this._topTenObj = new TopTenCollection();           
 
             Global.OnNowPlayChanged += delegate
             {
                 new Thread(new ThreadStart(delegate
                 {
                     HistoryPlayObj = HistoryPlayCollection.CreateNewObject();
-                    TopTenObj = TopTen.CreateNewObject();
+                    TopTenObj = TopTenCollection.CreateNewObject();
                 })).Start();                
             };
         }

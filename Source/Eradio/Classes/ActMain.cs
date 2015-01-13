@@ -24,12 +24,12 @@ namespace Eradio
         private TextView tViewTrack;
         private ImageView iViewTrack;
         private ListView lViewHistory;
+		private ListView lViewTopTen;
         private ProgressDialog prDlg;
 
         protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate (bundle);
-			this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Landscape;   
+			base.OnCreate (bundle); 
 			this.SetContentView (Resource.Layout.ActMain);
 
 			#region Visual Elements
@@ -38,6 +38,7 @@ namespace Eradio
 			this.tViewTrack = FindViewById<TextView> (Resource.Id.tViewTrack);
 			this.iViewTrack = FindViewById<ImageView> (Resource.Id.iViewArtist);			
 			this.lViewHistory = FindViewById<ListView> (Resource.Id.lViewHistoryPlay);		
+			this.lViewTopTen = FindViewById<ListView> (Resource.Id.lViewTopTen);		
 			this.InitTabMain();
 			#endregion
 
@@ -51,14 +52,14 @@ namespace Eradio
 			tabHost.Setup ();
 			TabHost.TabSpec tabSpec;
 
-			
+			/*
 			tabSpec = tabHost.NewTabSpec ("tag0");
 			View v0 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
 			(v0.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "В ефірі";
 			v0.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v0);
 			tabSpec.SetContent (Resource.Id.linearLayout8);
-			tabHost.AddTab (tabSpec);
+			tabHost.AddTab (tabSpec);*/
 
 			tabSpec = tabHost.NewTabSpec("tag1");
 			View v1 =  this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
@@ -73,9 +74,10 @@ namespace Eradio
 			(v2.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Топ 10";
 			v2.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v2);
-			tabSpec.SetContent (Resource.Id.linearLayout7);
+			tabSpec.SetContent (Resource.Id.layoutTopTen);
 			tabHost.AddTab (tabSpec);
 
+			/*
 			tabSpec = tabHost.NewTabSpec ("tag3");
 			View v3 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
 			(v3.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Нові пісні";
@@ -90,7 +92,7 @@ namespace Eradio
 			v4.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v4);
 			tabSpec.SetContent (Resource.Id.linearLayout8);
-			tabHost.AddTab (tabSpec);
+			tabHost.AddTab (tabSpec);*/
 
 			tabHost.SetCurrentTabByTag ("tag1");
 		}
@@ -206,6 +208,13 @@ namespace Eradio
 			});            
 		}
 
+		private void OnTopTenChanged(object obj, TopTenCollection arg)
+		{
+			RunOnUiThread (() => {
+				lViewTopTen.Adapter = new TopTenAdapter (this, arg);
+			});            
+		}
+
 		private void ClearEvents()
 		{
 			this.btnPlay.Click -= this.btnPlay_OnClick;
@@ -216,10 +225,12 @@ namespace Eradio
 			Global.OnMediaStateChanged -= this.OnMediaStateChanged;
 			Global.OnNowPlayChanged -= this.OnNowPlayChanged;
 			Global.OnHistoryPlayChanged -= this.OnHistoryPlayChanged;	
+			Global.OnTopTenChanged -= this.OnTopTenChanged;
 		}
 
 		private void AcceptEvents()
 		{
+			this.ClearEvents ();
 			this.btnPlay.Click += this.btnPlay_OnClick;
 			Global.OnError += this.OnError;
 			Global.OnLoadStart += this.OnLoadStart;
@@ -228,6 +239,7 @@ namespace Eradio
 			Global.OnMediaStateChanged += this.OnMediaStateChanged;
 			Global.OnNowPlayChanged += this.OnNowPlayChanged;
 			Global.OnHistoryPlayChanged += this.OnHistoryPlayChanged;	
+			Global.OnTopTenChanged += this.OnTopTenChanged;
 		}
     }
 }
