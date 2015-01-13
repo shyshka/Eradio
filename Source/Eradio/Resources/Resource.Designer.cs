@@ -63,7 +63,28 @@ namespace Eradio
 			public const int Stop = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Vk = 2130837510;
+			public const int tab_icon_selector = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int tab_selected = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int tab_selected_focused = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int tab_selected_pressed = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int tab_unselected = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int tab_unselected_focused = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int tab_unselected_pressed = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Vk = 2130837517;
 			
 			static Drawable()
 			{
@@ -78,53 +99,44 @@ namespace Eradio
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05000b
-			public const int btnPlay = 2131034123;
+			// aapt resource value: 0x7f050008
+			public const int btnPlay = 2131034120;
 			
-			// aapt resource value: 0x7f05000e
-			public const int btnVk = 2131034126;
+			// aapt resource value: 0x7f05000b
+			public const int btnVk = 2131034123;
 			
 			// aapt resource value: 0x7f050002
 			public const int iViewArtist = 2131034114;
 			
-			// aapt resource value: 0x7f050006
-			public const int lViewHistoryPlay = 2131034118;
-			
-			// aapt resource value: 0x7f05000c
-			public const int linearLayout4 = 2131034124;
+			// aapt resource value: 0x7f050005
+			public const int lViewHistoryPlay = 2131034117;
 			
 			// aapt resource value: 0x7f050004
-			public const int linearLayout5 = 2131034116;
-			
-			// aapt resource value: 0x7f050005
-			public const int linearLayout6 = 2131034117;
-			
-			// aapt resource value: 0x7f050007
-			public const int linearLayout7 = 2131034119;
+			public const int layoutHistoryPlay = 2131034116;
 			
 			// aapt resource value: 0x7f050009
-			public const int linearLayout8 = 2131034121;
+			public const int linearLayout4 = 2131034121;
 			
-			// aapt resource value: 0x7f05000a
-			public const int progressBar1 = 2131034122;
+			// aapt resource value: 0x7f050006
+			public const int linearLayout7 = 2131034118;
 			
-			// aapt resource value: 0x7f050008
-			public const int seekBar1 = 2131034120;
+			// aapt resource value: 0x7f050007
+			public const int linearLayout8 = 2131034119;
 			
 			// aapt resource value: 0x7f050001
 			public const int tViewArtist = 2131034113;
 			
-			// aapt resource value: 0x7f05000f
-			public const int tViewHeader = 2131034127;
+			// aapt resource value: 0x7f05000c
+			public const int tViewHeader = 2131034124;
 			
-			// aapt resource value: 0x7f05000d
-			public const int tViewTime = 2131034125;
+			// aapt resource value: 0x7f05000a
+			public const int tViewTime = 2131034122;
 			
 			// aapt resource value: 0x7f050000
 			public const int tViewTrack = 2131034112;
 			
 			// aapt resource value: 0x7f050003
-			public const int tabHost1 = 2131034115;
+			public const int tabHostMain = 2131034115;
 			
 			static Id()
 			{

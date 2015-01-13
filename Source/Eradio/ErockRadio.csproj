@@ -83,6 +83,13 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\TabHeader.axml" />
+    <AndroidResource Include="Resources\Drawable\tab_icon_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\tab_selected.png" />
+    <AndroidResource Include="Resources\Drawable\tab_unselected.png" />
+    <AndroidResource Include="Resources\Drawable\tab_selected_focused.png" />
+    <AndroidResource Include="Resources\Drawable\tab_unselected_focused.png" />
+    <AndroidResource Include="Resources\Drawable\tab_selected_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\tab_unselected_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml">

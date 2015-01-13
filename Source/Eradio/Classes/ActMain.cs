@@ -29,32 +29,49 @@ namespace Eradio
         protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			this.SetContentView (Resource.Layout.ActMain);      
+			this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Landscape;   
+			this.SetContentView (Resource.Layout.ActMain);
 
 			#region Visual Elements
 			this.btnPlay = FindViewById<ImageButton> (Resource.Id.btnPlay);
-			this.btnPlay.Click += this.btnPlay_OnClick;
-
 			this.tViewArtist = FindViewById<TextView> (Resource.Id.tViewArtist);
 			this.tViewTrack = FindViewById<TextView> (Resource.Id.tViewTrack);
 			this.iViewTrack = FindViewById<ImageView> (Resource.Id.iViewArtist);			
 			this.lViewHistory = FindViewById<ListView> (Resource.Id.lViewHistoryPlay);		
+			this.InitTabMain();
 			#endregion
 
-			TabHost tabHost = FindViewById<TabHost> (Resource.Id.tabHost1);
+			this.AcceptEvents ();
+			Global.RefreshData ();
+		}
+
+		private void InitTabMain()
+		{
+			TabHost tabHost = FindViewById<TabHost> (Resource.Id.tabHostMain);
 			tabHost.Setup ();
 			TabHost.TabSpec tabSpec;
 
+			
+			tabSpec = tabHost.NewTabSpec ("tag0");
+			View v0 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v0.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "В ефірі";
+			v0.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
+			tabSpec.SetIndicator (v0);
+			tabSpec.SetContent (Resource.Id.linearLayout8);
+			tabHost.AddTab (tabSpec);
+
 			tabSpec = tabHost.NewTabSpec("tag1");
-			View v1 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
-			(v1.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Останні 10";
+			View v1 =  this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v1.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Останні";
+			v1.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v1);
-			tabSpec.SetContent (Resource.Id.linearLayout6);
+			tabSpec.SetContent (Resource.Id.layoutHistoryPlay);
 			tabHost.AddTab (tabSpec);
 
 			tabSpec = tabHost.NewTabSpec ("tag2");
 			View v2 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
 			(v2.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Топ 10";
+			v2.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v2);
 			tabSpec.SetContent (Resource.Id.linearLayout7);
 			tabHost.AddTab (tabSpec);
@@ -62,12 +79,20 @@ namespace Eradio
 			tabSpec = tabHost.NewTabSpec ("tag3");
 			View v3 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
 			(v3.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Нові пісні";
+			v3.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
 			tabSpec.SetIndicator (v3);
 			tabSpec.SetContent (Resource.Id.linearLayout8);
 			tabHost.AddTab (tabSpec);
 
-			this.AcceptEvents ();
-			Global.RefreshData ();
+			tabSpec = tabHost.NewTabSpec ("tag4");
+			View v4 = this.LayoutInflater.Inflate (Resource.Layout.TabHeader, null);
+			(v4.FindViewById(Resource.Id.tViewHeader) as TextView).Text = "Подкасти";
+			v4.SetBackgroundResource (Resource.Drawable.tab_icon_selector);
+			tabSpec.SetIndicator (v4);
+			tabSpec.SetContent (Resource.Id.linearLayout8);
+			tabHost.AddTab (tabSpec);
+
+			tabHost.SetCurrentTabByTag ("tag1");
 		}
 
 		public void btnPlay_OnClick(object obj, EventArgs arg)
@@ -115,7 +140,7 @@ namespace Eradio
 
         protected override void OnRestoreInstanceState(Bundle savedInstanceState)
         {
-
+			this.AcceptEvents ();
 			base.OnRestoreInstanceState (savedInstanceState);
 		}
 
@@ -183,6 +208,7 @@ namespace Eradio
 
 		private void ClearEvents()
 		{
+			this.btnPlay.Click -= this.btnPlay_OnClick;
 			Global.OnError -= this.OnError;
 			Global.OnLoadStart -= this.OnLoadStart;
 			Global.OnLoadEnd -= this.OnLoadEnded;
@@ -194,6 +220,7 @@ namespace Eradio
 
 		private void AcceptEvents()
 		{
+			this.btnPlay.Click += this.btnPlay_OnClick;
 			Global.OnError += this.OnError;
 			Global.OnLoadStart += this.OnLoadStart;
 			Global.OnLoadEnd += this.OnLoadEnded;

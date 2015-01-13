@@ -1,21 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Eradio\Classes\ActMain.cs" Line="166" Column="23" />
-      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="46" Column="90" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="71" Column="42" />
+      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="36" Column="3" />
+      <File FileName="Eradio\Resources\Drawable\tab_icon_selector.xml" Line="5" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ErockRadio" expanded="True">
             <Node name="Classes" expanded="True">
-              <Node name="HistoryPlay" expanded="True" />
               <Node name="ActMain.cs" selected="True" />
             </Node>
             <Node name="Properties" expanded="True" />
             <Node name="Resources" expanded="True">
-              <Node name="Layout" expanded="True" />
+              <Node name="Drawable" expanded="True" />
               <Node name="Layout-land" expanded="True" />
               <Node name="Layout-port" expanded="True" />
             </Node>
