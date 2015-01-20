@@ -1,17 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\Global.cs">
     <Files>
-      <File FileName="Eradio\Classes\ActMain.cs" Line="207" Column="50" />
-      <File FileName="Eradio\Classes\WebProvider.cs" Line="20" Column="18" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="231" Column="3" />
+      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayItem.cs" Line="1" Column="1" />
+      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayCollection.cs" Line="1" Column="1" />
+      <File FileName="Eradio\Classes\Global.cs" Line="8" Column="18" />
+      <File FileName="Eradio\Classes\BackThread.cs" Line="33" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ErockRadio" expanded="True">
+            <Node name="References" expanded="True" />
             <Node name="Classes" expanded="True">
-              <Node name="ActMain.cs" selected="True" />
+              <Node name="Global.cs" selected="True" />
             </Node>
+            <Node name="Resources" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -24,10 +29,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="e:\Users\shyshka\Documents\Development\Android\Eradio\ErockRadio\Eradio\Source\Eradio\Classes\ActMain.cs" line="207" column="50" />
-      <Breakpoint file="e:\Users\shyshka\Documents\Development\Android\Eradio\ErockRadio\Eradio\Source\Eradio\Classes\ActMain.cs" line="214" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Release="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Debug="015d4a5ed6540a07" />
