@@ -29,7 +29,6 @@ namespace Eradio
         protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Landscape;   
 			this.SetContentView (Resource.Layout.ActMain);
 
 			#region Visual Elements

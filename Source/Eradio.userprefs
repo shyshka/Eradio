@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
     <Files>
-      <File FileName="Eradio\Classes\ActMain.cs" Line="71" Column="42" />
-      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="36" Column="3" />
-      <File FileName="Eradio\Resources\Drawable\tab_icon_selector.xml" Line="5" Column="12" />
+      <File FileName="Eradio\Classes\ActMain.cs" Line="59" Column="23" />
+      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayAdapter.cs" Line="1" Column="1" />
+      <File FileName="Eradio\Resources\Drawable\tab_icon_selector.xml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -34,5 +34,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Release="015d4a5ed6540a07" />
+  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Debug="015d4a5ed6540a07" MonoForAntroid.PreferredDevice="7in WSVGA (Tablet)" AndroidDeviceId-Release="192.168.56.102:5555" />
 </Properties>
