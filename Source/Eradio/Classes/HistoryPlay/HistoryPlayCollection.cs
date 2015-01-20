@@ -30,10 +30,6 @@ namespace Eradio
 			get{ return this._lstHistory [i]; }
 		}        
 
-		/// <summary>
-		/// Метод ініціалізації обьекту типу HistoryPlayCollection
-		/// </summary>
-		/// <returns>The new object of HistoryPlayCollection</returns>
         public static HistoryPlayCollection CreateNewObject()
         {
             try

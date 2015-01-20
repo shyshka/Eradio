@@ -38,7 +38,8 @@
                 p1:id="@+id/tViewArtist"
                 p1:gravity="center"
                 p1:layout_margin="10dp"
-                p1:textStyle="normal" />
+                p1:textStyle="normal"
+                p1:text="Your rock music now!" />
             <ImageView
                 p1:id="@+id/iViewArtist"
                 p1:scaleType="fitCenter"
@@ -92,22 +93,12 @@
                         <LinearLayout
                             p1:layout_width="match_parent"
                             p1:layout_height="match_parent"
-                            p1:id="@+id/linearLayout7"
+                            p1:id="@+id/layoutTopTen"
                             p1:minHeight="25px">
-                            <ProgressBar
-                                style="?android:attr/progressBarStyleLarge"
-                                p1:layout_width="wrap_content"
-                                p1:layout_height="wrap_content"
-                                p1:layout_margin="5dp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            p1:layout_width="match_parent"
-                            p1:layout_height="match_parent"
-                            p1:id="@+id/linearLayout8">
-                            <ProgressBar
-                                style="?android:attr/progressBarStyleLarge"
-                                p1:layout_width="wrap_content"
-                                p1:layout_height="wrap_content"
+                            <ListView
+                                p1:id="@+id/lViewTopTen"
+                                p1:layout_width="match_parent"
+                                p1:layout_height="match_parent"
                                 p1:layout_margin="5dp" />
                         </LinearLayout>
                     </FrameLayout>

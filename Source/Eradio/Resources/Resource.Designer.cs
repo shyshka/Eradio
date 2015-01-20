@@ -102,8 +102,8 @@ namespace Eradio
 			// aapt resource value: 0x7f050008
 			public const int btnPlay = 2131034120;
 			
-			// aapt resource value: 0x7f05000b
-			public const int btnVk = 2131034123;
+			// aapt resource value: 0x7f05000a
+			public const int btnVk = 2131034122;
 			
 			// aapt resource value: 0x7f050002
 			public const int iViewArtist = 2131034114;
@@ -111,26 +111,23 @@ namespace Eradio
 			// aapt resource value: 0x7f050005
 			public const int lViewHistoryPlay = 2131034117;
 			
+			// aapt resource value: 0x7f050007
+			public const int lViewTopTen = 2131034119;
+			
 			// aapt resource value: 0x7f050004
 			public const int layoutHistoryPlay = 2131034116;
 			
-			// aapt resource value: 0x7f050009
-			public const int linearLayout4 = 2131034121;
-			
 			// aapt resource value: 0x7f050006
-			public const int linearLayout7 = 2131034118;
-			
-			// aapt resource value: 0x7f050007
-			public const int linearLayout8 = 2131034119;
+			public const int layoutTopTen = 2131034118;
 			
 			// aapt resource value: 0x7f050001
 			public const int tViewArtist = 2131034113;
 			
-			// aapt resource value: 0x7f05000c
-			public const int tViewHeader = 2131034124;
+			// aapt resource value: 0x7f05000b
+			public const int tViewHeader = 2131034123;
 			
-			// aapt resource value: 0x7f05000a
-			public const int tViewTime = 2131034122;
+			// aapt resource value: 0x7f050009
+			public const int tViewTime = 2131034121;
 			
 			// aapt resource value: 0x7f050000
 			public const int tViewTrack = 2131034112;
@@ -158,10 +155,13 @@ namespace Eradio
 			public const int AnimCombo = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int HistoryItem = 2130903042;
+			public const int HistoryPlayItem = 2130903042;
 			
 			// aapt resource value: 0x7f030003
 			public const int TabHeader = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int TopTenItem = 2130903044;
 			
 			static Layout()
 			{

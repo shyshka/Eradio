@@ -54,7 +54,7 @@ namespace Eradio
             if (OnPlaying != null) OnPlaying(null, null);
         }
 
-        public static void SendOnTopTenChanged(TopTen arg)
+        public static void SendOnTopTenChanged(TopTenCollection arg)
         {
             if (OnTopTenChanged != null) OnTopTenChanged(null, arg);
         }
@@ -124,7 +124,7 @@ namespace Eradio
 
         public delegate void NowPlayEventHandler(object sender, NowPlay arg);
         public delegate void HistoryPlayHandler(object sendeg, HistoryPlayCollection arg);
-        public delegate void TopTenEventHandler(object sender, TopTen arg);
+        public delegate void TopTenEventHandler(object sender, TopTenCollection arg);
         public delegate void MessageEventHandler(object sender, string arg);
         #endregion
     }
