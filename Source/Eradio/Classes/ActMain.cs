@@ -11,8 +11,8 @@ using System.Net;
 using System.IO;
 using Android.Media;
 using System.IO.Compression;
-using Android.Support.V4.App;
 using Android.Views.Animations;
+using Android.Util;
 
 namespace Eradio
 {
@@ -27,8 +27,25 @@ namespace Eradio
 		private ListView lViewTopTen;
         private ProgressDialog prDlg;
 
+		protected override void OnStart ()
+		{
+			Log.Debug("Eradio","onstart");
+			this.AcceptEvents ();
+			Global.RefreshData ();
+			base.OnStart ();
+		}
+
+		protected override void OnStop ()
+		{
+			Log.Debug("Eradio","onstop");
+			ClearEvents ();
+			base.OnStop ();
+		}
+
+
         protected override void OnCreate(Bundle bundle)
 		{
+			Log.Debug("Eradio","oncreate");
 			base.OnCreate (bundle); 
 			this.SetContentView (Resource.Layout.ActMain);
 
@@ -41,9 +58,6 @@ namespace Eradio
 			this.lViewTopTen = FindViewById<ListView> (Resource.Id.lViewTopTen);		
 			this.InitTabMain();
 			#endregion
-
-			this.AcceptEvents ();
-			Global.RefreshData ();
 		}
 
 		private void InitTabMain()
@@ -132,20 +146,7 @@ namespace Eradio
 
             return base.OnOptionsItemSelected(item);
         }
-
-        protected override void OnSaveInstanceState(Bundle outState)
-        {
-            this.ClearEvents();
-            Global.IsDestoyed = true;
-            base.OnSaveInstanceState(outState);
-        }
-
-        protected override void OnRestoreInstanceState(Bundle savedInstanceState)
-        {
-			this.AcceptEvents ();
-			base.OnRestoreInstanceState (savedInstanceState);
-		}
-
+        
 		private void OnError(object obj,string arg)
 		{
 			RunOnUiThread (() => Global.ShowToast (this, arg));
@@ -196,8 +197,8 @@ namespace Eradio
 					iViewTrack.SetImageBitmap (logo);
 				else
 					iViewTrack.SetImageResource (Resource.Drawable.Erock);
-				Animation anim = AnimationUtils.LoadAnimation (this, Resource.Layout.AnimCombo);
-				iViewTrack.StartAnimation (anim);
+				//Animation anim = AnimationUtils.LoadAnimation (this, Resource.Layout.AnimCombo);
+				//iViewTrack.StartAnimation (anim);
 			});
 		}
 
@@ -230,7 +231,6 @@ namespace Eradio
 
 		private void AcceptEvents()
 		{
-			this.ClearEvents ();
 			this.btnPlay.Click += this.btnPlay_OnClick;
 			Global.OnError += this.OnError;
 			Global.OnLoadStart += this.OnLoadStart;

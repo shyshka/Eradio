@@ -14,7 +14,6 @@ namespace Eradio
 {
     public static class Global
     {
-        public static bool IsDestoyed = false;
         private static MediaProvider _mediaProviderObj;
         private static BackThread _backThreadObj;
 
@@ -80,7 +79,7 @@ namespace Eradio
 
         public static void RefreshData()
 		{
-			Global.OnMediaStateChanged (null, null);
+			SendOnMediaStateChanged();
 			_backThreadObj.RefreshData ();
 		}
 
