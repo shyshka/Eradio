@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eradio</RootNamespace>
-    <AssemblyName>Eradio</AssemblyName>
+    <AssemblyName>ERockRadio</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -18,7 +18,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkVersion>v2.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -28,13 +28,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -75,9 +74,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Drawable\Vk.png" />
-    <AndroidResource Include="Resources\Layout-land\ActMain.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\Layout\TabHeader.axml" />
     <AndroidResource Include="Resources\Drawable\tab_icon_selector.xml" />
     <AndroidResource Include="Resources\Drawable\tab_selected.png" />
@@ -86,15 +82,16 @@
     <AndroidResource Include="Resources\Drawable\tab_unselected_focused.png" />
     <AndroidResource Include="Resources\Drawable\tab_selected_pressed.png" />
     <AndroidResource Include="Resources\Drawable\tab_unselected_pressed.png" />
-    <AndroidResource Include="Resources\Layout-port\ActMain.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\Layout\TopTenItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\HistoryPlayItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout-large-land\ActMain.axml" />
+    <AndroidResource Include="Resources\Layout-large-port\ActMain.axml" />
+    <AndroidResource Include="Resources\Layout-normal-land\ActMain.axml" />
+    <AndroidResource Include="Resources\Layout-normal-port\ActMain.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml">
@@ -135,7 +132,10 @@
   -->
   <ItemGroup>
     <Folder Include="Classes\HistoryPlay\" />
-    <Folder Include="Resources\Layout-port\" />
     <Folder Include="Classes\TopTen\" />
+    <Folder Include="Resources\Layout-normal-land\" />
+    <Folder Include="Resources\Layout-normal-port\" />
+    <Folder Include="Resources\Layout-large-land\" />
+    <Folder Include="Resources\Layout-large-port\" />
   </ItemGroup>
 </Project>

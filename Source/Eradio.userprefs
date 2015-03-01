@@ -1,23 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eradio\Classes\ActMain.cs">
-    <Files>
-      <File FileName="Eradio\Classes\ActMain.cs" Line="201" Column="7" />
-      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayItem.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\HistoryPlay\HistoryPlayCollection.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\Global.cs" Line="86" Column="39" />
-      <File FileName="Eradio\Classes\BackThread.cs" Line="12" Column="46" />
-      <File FileName="Eradio\Classes\MediaProvider.cs" Line="1" Column="1" />
-      <File FileName="Eradio\Classes\WebProvider.cs" Line="14" Column="14" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ErockRadio" expanded="True" selected="True">
-            <Node name="Classes" expanded="True" />
-            <Node name="Resources" expanded="True">
-              <Node name="Layout-port" expanded="True" />
+            <Node name="Classes" expanded="True">
+              <Node name="HistoryPlay" expanded="True" />
             </Node>
+            <Node name="Resources" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -33,5 +24,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Release="192.168.56.100:5555" MonoForAntroid.PreferredDevice="4in WVGA (Nexus S)" AndroidDeviceId-Debug="192.168.56.100:5555" />
+  <MonoDevelop.Ide.ItemProperties.ErockRadio AndroidDeviceId-Release="192.168.56.102:5555" MonoForAntroid.PreferredDevice="4in WVGA (Nexus S)" AndroidDeviceId-Debug="015d4a5ed6540a07" />
 </Properties>

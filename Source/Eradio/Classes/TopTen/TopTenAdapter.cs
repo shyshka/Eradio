@@ -74,8 +74,6 @@ namespace Eradio
 		{
 			var item = _topTenObj[int.Parse((obj as ImageView).Tag.ToString())];
 			string vkText = string.Format ("I liked song: \n{0}\n{1}", item.ArtistName, item.TrackName);
-			Toast.MakeText (_activity, vkText, ToastLength.Short).Show ();
-
 			string phpRequest = string.Format (
 				                    "http://vkontakte.ru/share.php?" +
 				                    "url=http://eradio.ua/rock/" +
@@ -85,6 +83,7 @@ namespace Eradio
 				                    "&noparse=true", item.ArtistName, item.TrackName, item.ImagePath);
 
 			Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(phpRequest));
+			browserIntent.SetFlags (ActivityFlags.NewTask);
 			_activity.StartActivity(browserIntent);
 		}        
     }
